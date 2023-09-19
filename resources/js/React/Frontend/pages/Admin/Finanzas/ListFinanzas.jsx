@@ -2,7 +2,11 @@ import React from 'react'
 
 const ListFinanzas = () => {
   return (
-    <div>List Finanzas</div>
+    <>
+         <h1 className='text-7xl font-bold text-center'>
+        List Finanzas
+        </h1>
+    </>
   )
 }
 

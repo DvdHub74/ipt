@@ -42,18 +42,20 @@ const NavElements = () => {
 
   return (
     <>
-          <ul className='text-xl'>
+          <ul className='text-xl h-screen overflow-y-auto pb-10 '>
                         <li>
-                            <img
-                                src={logo}
-                                alt="Mi Imagen"
-                                className="w-24 h-30 mx-auto mb-10"
-                            />
+                            <Link to="/home">
+                                <img
+                                    src={logo}
+                                    alt="Mi Imagen"
+                                    className="w-24 h-30 mx-auto mb-10 cursor-pointer"
+                                />
+                            </Link>
                         </li>
 
 
 
-                        <li>
+                        <li className='w-3/4 md:w-1/3 lg:w-full mx-auto'>
                             <Link to="/home" className={` py-2 px-4 block ${margen}`}>
                                 <button
 
@@ -68,7 +70,7 @@ const NavElements = () => {
                         </li>
 
                     {/* Dropdown */}
-                        <li to="/home" className= {` py-2 px-4 block  ${margen}`} >
+                        <li to="/home" className= {` py-2 px-4 block w-3/4 md:w-1/3 lg:w-full mx-auto  ${margen}`} >
                             <button
                                 onClick={ () =>  handleDropdownClick(1)}
                                 className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md"
@@ -84,7 +86,7 @@ const NavElements = () => {
                             <ul className={`${activeDropdown === 1 ? '' : 'hidden'} text-base text-indigo-800`}
                              ref={dropDownMenu1} >
                                 <li>
-                                    <Link to="/home/list-finanzas" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
+                                    <Link to="/home/list-registros" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
                                         <span  className='font-bold'>
                                             <FontAwesomeIcon icon={faGears}/> Administrar
                                         </span>
@@ -115,7 +117,7 @@ const NavElements = () => {
                         </li>
 
                     {/* Dropdown */}
-                    <li to="/home" className= {` py-2 px-4 block  ${margen}`} >
+                    <li to="/home" className= {` py-2 px-4 block  w-3/4 md:w-1/3 lg:w-full mx-auto ${margen}`} >
                             <button
                                 onClick={() => handleDropdownClick(2)}
                                 className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md"
@@ -131,7 +133,7 @@ const NavElements = () => {
                             <ul className={`${activeDropdown === 2 ? '' : 'hidden'} text-base text-indigo-800`}
                              ref={dropDownMenu2} >
                                 <li>
-                                    <Link to="/home/list-registros" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
+                                    <Link to="/home/list-finanzas" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
                                         <span  className='font-bold'>
                                             <FontAwesomeIcon icon={faTable}/> Administrar
                                         </span>
@@ -149,7 +151,7 @@ const NavElements = () => {
                         </li>
 
                         {/* Dropdown */}
-                    <li to="/home" className= {` py-2 px-4 block  ${margen}`} >
+                    <li to="/home" className= {` py-2 px-4 block w-3/4 md:w-1/3 lg:w-full mx-auto  ${margen}`} >
                             <button
                                 onClick={() => handleDropdownClick(3)}
                                 className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md"
@@ -183,7 +185,7 @@ const NavElements = () => {
                         </li>
                         {/* ================ */}
                         <li>
-                            <Link to="/home/perfil" className={` py-2 px-4 block ${margen}`}>
+                            <Link to="/home/perfil" className={` py-2 px-4 block w-3/4 md:w-1/3 lg:w-full mx-auto ${margen}`}>
                                 <button
 
                                 className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md"

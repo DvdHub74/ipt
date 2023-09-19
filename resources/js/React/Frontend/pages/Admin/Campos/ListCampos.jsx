@@ -2,7 +2,11 @@ import React from 'react'
 
 const ListCampos = () => {
   return (
-    <div>List Campos</div>
+    <>
+        <h1 className='text-7xl font-bold text-center'>
+            List Campos
+        </h1>
+    </>
   )
 }
 

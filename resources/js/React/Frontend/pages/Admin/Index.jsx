@@ -3,7 +3,11 @@ import React from 'react'
 
 const Index = () => {
   return (
-    <div>Index</div>
+    <>
+        <h1 className='text-7xl font-bold text-center'>
+            Index
+        </h1>
+    </>
   )
 }
 

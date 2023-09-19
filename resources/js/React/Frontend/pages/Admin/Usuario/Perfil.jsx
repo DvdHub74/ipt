@@ -2,7 +2,11 @@ import React from 'react'
 
 const Perfil = () => {
   return (
-    <div>Perfil</div>
+    <>
+        <h1 className='text-7xl font-bold text-center'>
+            Perfil
+        </h1>
+    </>
   )
 }
 
