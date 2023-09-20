@@ -12,6 +12,7 @@ faCoins,
 faHouseUser,
 faNewspaper,
 faGears,
+faArrowRight,
 faTable} from '@fortawesome/free-solid-svg-icons';
 
 
@@ -42,7 +43,7 @@ const NavElements = () => {
 
   return (
     <>
-          <ul className='text-xl h-screen overflow-y-auto pb-10 '>
+          <ul className='text-xl  h-screen overflow-y-auto pb-10 '>
                         <li>
                             <Link to="/home">
                                 <img
@@ -55,94 +56,87 @@ const NavElements = () => {
 
 
 
-                        <li className='w-3/4 md:w-1/3 lg:w-full mx-auto'>
-                            <Link to="/home" className={` py-2 px-4 block ${margen}`}>
+                        <li className=' mx-auto '>
+                            <Link to="/home" className={`py-2 px-4 block ${margen}`}>
                                 <button
 
-                                className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md"
+                                className="flex  items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md  shadow-2xl
+                                hover:bg-blue-800
+                                "
                                 >
                                     <div className="flex items-center space-x-5">
-                                        <FontAwesomeIcon icon={faHome} className="text-xl" />
-                                        <span className="font-bold uppercase">Inicio</span>
+                                        <FontAwesomeIcon icon={faHome} className=" text-sm md:text-md lg:text-lg" />
+                                        <span className="font-bold uppercase text-sm md:text-md lg:text-lg">Inicio</span>
                                     </div>
                                 </button>
                             </Link>
                         </li>
 
                     {/* Dropdown */}
-                        <li to="/home" className= {` py-2 px-4 block w-3/4 md:w-1/3 lg:w-full mx-auto  ${margen}`} >
+                        <li to="/home" className= {` py-2 px-4 block  mx-auto  ${margen}`} >
                             <button
                                 onClick={ () =>  handleDropdownClick(1)}
-                                className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md"
+                                className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md shadow-2xl
+                                hover:bg-blue-800
+                                "
                                 >
                                 <div className="flex items-center space-x-5">
-                                    <FontAwesomeIcon icon={faTable} className="text-xl" />
-                                    <span className="font-bold uppercase">Registros</span>
+                                    <FontAwesomeIcon icon={faTable} className=" text-sm md:text-md lg:text-lg" />
+                                    <span className="font-bold uppercase  text-sm md:text-md lg:text-lg">Registros</span>
                                 </div>
-                                <FontAwesomeIcon icon={faCaretDown} className="text-xl ml-auto" />
+                                <FontAwesomeIcon icon={faCaretDown} className=" text-sm md:text-md lg:text-lg ml-auto" />
                             </button>
 
 
                             <ul className={`${activeDropdown === 1 ? '' : 'hidden'} text-base text-indigo-800`}
                              ref={dropDownMenu1} >
                                 <li>
-                                    <Link to="/home/list-registros" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
-                                        <span  className='font-bold'>
-                                            <FontAwesomeIcon icon={faGears}/> Administrar
+                                    <Link to="/home/list-registros" className= {`hover:bg-blue-950  hover:rounded-md hover:text-white py-2 px-4 block text-center ${margen}`}>
+                                        <span  className='font-bold  text-sm md:text-md lg:text-md'>
+                                            <FontAwesomeIcon icon={faGears} className=' text-sm md:text-md lg:text-md'/> Administrar
                                         </span>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/home/reportes" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
-                                        <span  className='font-bold'>
-                                            <FontAwesomeIcon icon={faNewspaper}/> Reportes
+                                    <Link to="/home/reportes" className= {`hover:bg-blue-950 hover:rounded-md hover:text-white py-2 px-4 block text-center ${margen}`}>
+                                        <span  className='font-bold  text-sm md:text-md lg:text-md'>
+                                            <FontAwesomeIcon icon={faNewspaper} className=' text-sm md:text-md lg:text-md'/> Reportes
                                         </span>
                                     </Link>
                                 </li>
-                                {/* <li>
-                                    <Link to="/home/edit" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
-                                        <span  className='font-bold'>
-                                        <FontAwesomeIcon icon={faPenToSquare} />  Editar
-                                        </span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/home/create" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
-                                        <span  className="font-bold">
-                                        <FontAwesomeIcon icon={faSquarePlus} /> Crear
-                                        </span>
-                                    </Link>
-                                </li> */}
                             </ul>
                         </li>
 
                     {/* Dropdown */}
-                    <li to="/home" className= {` py-2 px-4 block  w-3/4 md:w-1/3 lg:w-full mx-auto ${margen}`} >
+                    <li to="/home" className= {` py-2 px-4 block   mx-auto ${margen}`} >
                             <button
                                 onClick={() => handleDropdownClick(2)}
-                                className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md"
+                                className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md shadow-2xl
+                                hover:bg-blue-800
+                                "
+
                                 >
                                 <div className="flex items-center space-x-5">
-                                    <FontAwesomeIcon icon={faCoins} className="text-xl" />
-                                    <span className="font-bold uppercase">Finanzas</span>
+                                    <FontAwesomeIcon icon={faCoins} className="text-sm md:text-md lg:text-lg" />
+                                    <span className="font-bold uppercase text-sm md:text-md lg:text-lg">Finanzas</span>
                                 </div>
-                                <FontAwesomeIcon icon={faCaretDown} className="text-xl ml-auto" />
+                                <FontAwesomeIcon icon={faCaretDown} className="text-sm md:text-md lg:text-lg ml-auto" />
                             </button>
 
 
                             <ul className={`${activeDropdown === 2 ? '' : 'hidden'} text-base text-indigo-800`}
                              ref={dropDownMenu2} >
                                 <li>
-                                    <Link to="/home/list-finanzas" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
-                                        <span  className='font-bold'>
-                                            <FontAwesomeIcon icon={faTable}/> Administrar
+                                    <Link to="/home/list-finanzas" className= {`hover:bg-indigo-950 hover:rounded-md hover:text-white py-2 px-4 block text-center ${margen}`}>
+                                        <span  className='font-bold  text-sm md:text-md lg:text-md'>
+                                            <FontAwesomeIcon icon={faTable} className=' text-sm md:text-md lg:text-md'/> Administrar
                                         </span>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/home/reportes" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
-                                        <span  className='font-bold'>
-                                            <FontAwesomeIcon icon={faNewspaper}/> Reportes
+                                    <Link to="/home/reportes" className= {`hover:bg-indigo-950 hover:rounded-md hover:text-white py-2 px-4 block text-center ${margen}`}>
+                                        <span  className='font-bold  text-sm md:text-md lg:text-md'>
+                                            <FontAwesomeIcon icon={faNewspaper} className=' text-sm md:text-md lg:text-md'/> Reportes
                                         </span>
                                     </Link>
                                 </li>
@@ -151,30 +145,32 @@ const NavElements = () => {
                         </li>
 
                         {/* Dropdown */}
-                    <li to="/home" className= {` py-2 px-4 block w-3/4 md:w-1/3 lg:w-full mx-auto  ${margen}`} >
+                    <li to="/home" className= {` py-2 px-4 block  mx-auto  ${margen}`} >
                             <button
                                 onClick={() => handleDropdownClick(3)}
-                                className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md"
+                                className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md shadow-2xl
+                                hover:bg-blue-800
+                                "
                                 >
                                 <div className="flex items-center space-x-5">
-                                    <FontAwesomeIcon icon={faHouseUser} className="text-xl" />
-                                    <span className="font-bold uppercase">Campos</span>
+                                    <FontAwesomeIcon icon={faHouseUser} className="text-sm md:text-md lg:text-lg" />
+                                    <span className="font-bold uppercase text-sm md:text-md lg:text-lg">Campos</span>
                                 </div>
-                                <FontAwesomeIcon icon={faCaretDown} className="text-xl ml-auto" />
+                                <FontAwesomeIcon icon={faCaretDown} className="text-sm md:text-md lg:text-lg ml-auto" />
                             </button>
 
 
                             <ul className={`${activeDropdown === 3 ? '' : ' transition ease-in-out delay-150 hidden '} text-base text-indigo-800`}
                             ref={dropDownMenu3} >
                                 <li>
-                                    <Link to="/home/list-campos" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
-                                        <span  className='font-bold'>
-                                            <FontAwesomeIcon icon={faTable}/> Administrar
+                                    <Link to="/home/list-campos" className= {`hover:bg-indigo-950 hover:rounded-md hover:text-white py-2 px-4 block text-center ${margen}`}>
+                                        <span  className='font-bold  text-sm md:text-md lg:text-md'>
+                                            <FontAwesomeIcon icon={faTable} className=' text-sm md:text-md lg:text-md'/> Administrar
                                         </span>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/home/reportes" className= {`hover:bg-indigo-950 hover:text-white py-2 px-4 block text-center ${margen}`}>
+                                    <Link to="/home/reportes" className= {`hover:bg-indigo-950 hover:rounded-md hover:text-white py-2 px-4 block text-center ${margen}`}>
                                         <span  className='font-bold'>
                                             <FontAwesomeIcon icon={faNewspaper}/> Reportes
                                         </span>
@@ -185,21 +181,20 @@ const NavElements = () => {
                         </li>
                         {/* ================ */}
                         <li>
-                            <Link to="/home/perfil" className={` py-2 px-4 block w-3/4 md:w-1/3 lg:w-full mx-auto ${margen}`}>
+                            <Link to="/home/perfil" className={` py-2 px-4 block  mx-auto ${margen}`}>
                                 <button
 
-                                className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md"
+                                className="flex items-center justify-between w-full px-4 py-2 text-xl bg-blue-950 text-white rounded-md shadow-2xl
+                                hover:bg-blue-800
+                                "
                                 >
                                     <div className="flex items-center space-x-5">
-                                        <FontAwesomeIcon icon={faUser} className="text-xl" />
-                                        <span className="font-bold uppercase">Perfil</span>
+                                        <FontAwesomeIcon icon={faUser} className="text-sm md:text-md lg:text-lg" />
+                                        <span className="font-bold uppercase text-sm md:text-md lg:text-lg">Perfil</span>
                                     </div>
                                 </button>
                             </Link>
                         </li>
-
-
-
 
                     </ul>
     </>
