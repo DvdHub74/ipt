@@ -42,7 +42,10 @@ const AdminLayout = () => {
   return (
     <>
     <div className='container-fluid p-0 m-0'>
-        <div className='bg-light shadow-sm pt-3  pb-3 vw-100 d-flex justify-content-between align-items-center px-3'>
+        <div className='shadow-sm headerMain pt-3  pb-3 vw-100 d-flex justify-content-between align-items-center px-3'
+
+
+        >
             <button
                 className="btn btnMenu"
                 style={{ background: '#2F288B', color: 'white' }}

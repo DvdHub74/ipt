@@ -1,12 +1,18 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faSave, faTrash, faX } from '@fortawesome/free-solid-svg-icons';
+import ModalForm from './ModalForm';
+
 const TableRegistros = ({data}) => {
-    console.log(data);
+
+    const titulo ='Editar Registro';
 
   return (
     <>
-    <div class="table-responsive col-9  mx-auto">
+
+
+
+    <div class="table-responsive col-lg-9 col-11  mx-auto">
         <table class="table table-light table-hover">
                 <thead className='table-dark'>
                     <tr>
@@ -23,9 +29,9 @@ const TableRegistros = ({data}) => {
                         <td className='text-center'>{person.lastnames}</td>
                         <td className='text-center'>{person.age}</td>
                         <td className='text-center'>
-                            <div className="row justify-content-center">
+                            <div className="row justify-content-center d-lg-flex d-none">
                                 <div className="col-2 text-center">
-                                    <button className='btn btn-info' style={{ borderRadius: '50px' }}>
+                                    <button   data-bs-toggle="modal" data-bs-target="#exampleModal"  type="button" className='btn btn-info' style={{ borderRadius: '50px' }}>
                                         <FontAwesomeIcon icon={faPenToSquare} />
                                     </button>
                                 </div>
@@ -35,6 +41,22 @@ const TableRegistros = ({data}) => {
                                     </button>
                                 </div>
                             </div>
+                            <div class="dropdown d-lg-none">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <div className="d-flex justify-content-center gap-3">
+                                    <button   data-bs-toggle="modal" data-bs-target="#exampleModal"  type="button" className='btn btn-info ' style={{ borderRadius: '50px' }}>
+                                        <FontAwesomeIcon icon={faPenToSquare} />
+                                    </button>
+
+                                    <button className='btn btn-danger ' style={{ borderRadius: '50px' }}>
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </button>
+                                </div>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 ))}
@@ -42,6 +64,13 @@ const TableRegistros = ({data}) => {
                 </tbody>
             </table>
         </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <ModalForm title={titulo}/>
+        </div>
+
+
+
     </>
   )
 }
