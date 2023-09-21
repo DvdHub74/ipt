@@ -6,7 +6,9 @@ const AuthLayout = () => {
   return (
     <>
 
+        <main className='p-0 m-0  vw-100 mainContain'>
             <Outlet/>
+        </main>
 
     </>
   )

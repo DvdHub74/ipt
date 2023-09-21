@@ -60,7 +60,7 @@ color: #463EB6 !important;
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
-    filter: blur(15px);
+    filter: blur(5px);
 }
 
 
