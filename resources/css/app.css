@@ -1,5 +1,67 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600;700&display=swap');
+
+/* Pantalla grande (lg) - 15% */
+.offcanvas {
+    width: 15% !important;
+  }
+  @media (max-width: 1300px) {
+    .offcanvas {
+      width: 20% !important;
+    }
+  }
+  /* Pantalla mediana (md) - 30% */
+  @media (max-width: 992px) {
+    .offcanvas {
+      width: 30% !important;
+    }
+  }
+
+  /* Pantalla pequeña (sm) - 45% */
+  @media (max-width: 768px) {
+    .offcanvas {
+      width: 45% !important;
+    }
+  }
+
+  /* Pantalla muy pequeña (xs) - 55% */
+  @media (max-width: 576px) {
+    .offcanvas {
+      width: 65% !important;
+    }
+    .iconClose{
+        font-size:2.5em;
+        margin-top: 10px !important;
+      }
+  }
+
+.iconClose:hover{
+color: #463EB6 !important;
+}
+.btnMenu:hover{
+    background: #463EB6 !important;
+}
+.btnMenu{
+  border-radius: 100px;
+}
+.titlePage{
+    color: #2F288B;
+    font-size: 3em;
+    font-weight: bolder;
+    font-family: 'Exo 2', sans-serif;
+
+}
+
+
+.mainContain::before {
+    z-index: -10;
+    background-image: url('https://img.freepik.com/free-vector/prickly-juniper-branch-beige-gray-minimal-background_53876-113047.jpg');
+    background-size: cover;
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    filter: blur(15px);
+}
+
 
 

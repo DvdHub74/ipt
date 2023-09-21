@@ -1,56 +1,65 @@
-import React, {useRef} from 'react'
-import ModalForm from '../../../Components/ModalForm';
-import Table from '../../../Components/Table';
+import { faAdd, faFilePdf, faPenToSquare, faSearch } from '@fortawesome/free-solid-svg-icons'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-faPlus,
-faSearch,
-} from '@fortawesome/free-solid-svg-icons';
-
+import TableRegistros from '../../../Components/TableRegistros';
+import axios from 'axios';
 const ListRegistros = () => {
-    const modalMain = useRef(null);
-    const añadirNuevo ='Agregar Nuevo Registro'
+    const [dataJson, setDataJson]= useState([]);
 
-    const handleOpenModal = () => {
-        modalMain.current.classList.remove('hidden');
-    }
+        useEffect(() => {
+
+            const fetchData = async () => {
+                    try {
+                        const response = await axios.get('api/json');
+
+                        setDataJson(response.data);
+
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+
+            fetchData();
+        }, []);
+
+
+
   return (
     <>
-        <div className='p-2 mb-7'>
-            <h1 className='text-4xl lg:text-4xl xl:text-5xl text-blue-900 font-bold text-center'>
-                Lista de registros
-            </h1>
-        </div>
-        <div className='p-2 px-10 mb-7 flex justify-between'>
-            <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4  relative">
-                <input
-                    type="text"
-                    placeholder="Buscar..."
-                    className="w-full px-8 py-2 pl-10 border-none rounded-lg shadow-md focus:none"
-                />
-                <FontAwesomeIcon
-                    icon={faSearch}
-                    className="absolute left-3 top-3 text-lg text-gray-500"
-                />
-            </div>
+        <div className='container-fluid p-0 m-0 vw-100 vh-100 px-5 mt-2'>
+               <div class="row justify-content-centeralign-items-center g-2">
+                    <div class="col-lg-8 mx-auto  text-center">
+                        <span className='titlePage'>
+                            Lista de Registros
+                        </span>
+                    </div>
+               </div>
+                <div className="d-flex justify-content-between mt-5 w-75 mx-auto py-2 ">
+                <section className='col-6  px-5'>
+                        <input class="form-control mx-auto w-75 border-end-0 shadow ps-4 border rounded-pill" type="search" placeholder="Buscar..." id="example-search-input"/>
+                </section>
+                <section className='col-6   justify-content-center text-center'>
 
-            <button id="modal-close" className="px-4 py-2 text-sm sm:text-md lg:text-lg xl:text-lg md:text-lg
-            font-semibold text-white bg-green-400 rounded-lg shadow-md hover:bg-green-600"
-            onClick={handleOpenModal}>
-               <FontAwesomeIcon  icon={faPlus}/> Nuevo
-            </button>
-        </div>
+                    <button className='btn me-3 btn-warning shadow  rounded-pill' >
+                       <FontAwesomeIcon icon={faFilePdf}/> Reporte
+                    </button>
+                    <button className='btn btn-success shadow  rounded-pill' >
+                       <FontAwesomeIcon icon={faAdd}/> Nuevo
+                    </button>
 
-        <div className='flex justify-center items-center px-10 '>
-            <Table/>
-        </div>
+                </section>
 
-        <div id="myModal" className="modal hidden fixed inset-0 w-full h-full flex items-center justify-center" ref={modalMain}
-         style={{ zIndex: 400 }}>
-            <ModalForm modalMain={modalMain} title={añadirNuevo}/>
+                </div>
+
+                <div className="row mt-5">
+                    <TableRegistros data={dataJson} />
+
+                </div>
+
         </div>
     </>
   )
 }
 
 export default ListRegistros
+

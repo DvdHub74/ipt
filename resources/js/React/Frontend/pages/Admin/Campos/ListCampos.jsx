@@ -3,7 +3,7 @@ import React from 'react'
 const ListCampos = () => {
   return (
     <>
-        <h1 className='text-7xl font-bold text-center'>
+        <h1 className='text-center'>
             List Campos
         </h1>
     </>
