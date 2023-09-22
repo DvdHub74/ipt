@@ -249,9 +249,9 @@ const AdminLayout = () => {
         }
         {cargando &&
           <main className="p-0 m-0  vw-100 mainContain">
-            <div class="d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
+            <div className="d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
 
-                <div class="spinner-border text-info" style={{width:'5em', height:'5em'}} role="status">
+                <div className="spinner-border text-info" style={{width:'5em', height:'5em'}} role="status">
 
                 </div>
             </div>

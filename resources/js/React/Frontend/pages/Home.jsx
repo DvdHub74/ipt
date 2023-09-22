@@ -139,11 +139,11 @@ const Home = () => {
     };
     return (
         <>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col"></div>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col"></div>
 
-                    <div class="col-lg-6 col-xl-5 col-md-7 col-12 containerLogin bg-light vh-100  relative shadow">
+                    <div className="col-lg-6 col-xl-5 col-md-7 col-12 containerLogin bg-light vh-100  relative shadow">
                         <main
                             className="card cardLogin  mx-auto w-75 border-0 h-50 absolute"
                             style={{
@@ -153,7 +153,7 @@ const Home = () => {
                         >
                             {!form && (
                                 <div className="containLogin">
-                                    <div class="card-title text-center mt-3">
+                                    <div className="card-title text-center mt-3">
                                         <h3
                                             style={{
                                                 textTransform: "uppercase",
@@ -164,7 +164,7 @@ const Home = () => {
                                         </h3>
                                     </div>
 
-                                    <section class="card-body">
+                                    <section className="card-body">
                                         <form  onSubmit={handleLogin}>
                                             <div className="row mb-4 mt-3">
                                                 <div className="col-10 my-3 mx-auto">
@@ -232,7 +232,7 @@ const Home = () => {
                             )}
                             {form && (
                                 <div className="containRegister">
-                                    <div class="card-title text-center mt-3">
+                                    <div className="card-title text-center mt-3">
                                         <h3
                                             style={{
                                                 textTransform: "uppercase",
@@ -243,7 +243,7 @@ const Home = () => {
                                         </h3>
                                     </div>
 
-                                    <section class="card-body">
+                                    <section className="card-body">
                                         <div className="row mb-3 mt-3">
                                             <form onSubmit={handleRegister}>
                                                 <div className="col-10 my-3 mx-auto">

@@ -21,19 +21,19 @@ const ModalForm = ({title}) => {
 
     return (
         <>
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content ">
-                    <div class="modal-header ">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content ">
+                    <div className="modal-header ">
                         <button
                             type="button"
-                            class="btn-close r-0"
+                            className="btn-close r-0"
                             data-bs-dismiss="modal"
                             aria-label="Close"
                         ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                         <h3
-                            class="text-center  "
+                            className="text-center  "
                             id="exampleModalLabel"
                             style={{ color: "#2F288B" }}
                         >
@@ -97,7 +97,7 @@ const ModalForm = ({title}) => {
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer px-4">
+                    <div className="modal-footer px-4">
                         <button
                             type="button"
                             className="btn btnMenu w-50 mx-auto"

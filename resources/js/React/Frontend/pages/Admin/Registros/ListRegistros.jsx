@@ -22,10 +22,10 @@ const ListRegistros = () => {
                             }
                         }
 
-                        const response = await axios.get('api/json', config);
+                        const response = await axios.get('api/data/people', config);
 
-                        setDataJson(response.data);
 
+                        setDataJson(response.data[0])
                     } catch (error) {
                         console.log(error);
                     }
@@ -38,19 +38,19 @@ const ListRegistros = () => {
             setSearchTerm(event.target.value);
           };
 
-        const filteredData = dataJson && dataJson.length > 0
-        ? dataJson.filter((item) =>
-            item.names.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.lastnames.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.age.toLowerCase().includes(searchTerm.toLowerCase())
-          )
-        : dataJson;
+        // const filteredData = dataJson && dataJson.length > 0
+        // ? dataJson.filter((item) =>
+        //     item.names.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        //     item.lastnames.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        //     item.age.toLowerCase().includes(searchTerm.toLowerCase())
+        //   )
+        // : dataJson;
 
   return (
     <>
         <div className='container-fluid p-0 m-0 vw-100 vh-100 px-lg-5 mt-2'>
-               <div class="row justify-content-centeralign-items-center g-2">
-                    <div class="col-lg-8 mx-auto  text-center">
+               <div className="row justify-content-centeralign-items-center g-2">
+                    <div className="col-lg-8 mx-auto  text-center">
                         <span className='titlePage'>
                             Lista de Registros
                         </span>
@@ -58,7 +58,7 @@ const ListRegistros = () => {
                </div>
                 <div className="row mt-5 mx-auto py-2 px-lg-5 ">
                 <section className='col-lg-6 col-sm-6 order-2 order-sm-1 order-lg-1 col-12  ms-lg-5 px-lg-5'>
-                        <input class="form-control mx-auto w-lg-50 w-75 mt-3 mt-lg-0 mt-md-0 border-end-0 shadow ps-4  rounded-pill"
+                        <input className="form-control mx-auto w-lg-50 w-75 mt-3 mt-lg-0 mt-md-0 border-end-0 shadow ps-4  rounded-pill"
                         value={searchTerm}
                         onChange={handleSearchChange}
                         type="search" placeholder="Buscar..." id="example-search-input"/>
@@ -80,11 +80,11 @@ const ListRegistros = () => {
                 </div>
 
                 <div className="row mt-5 w-100">
-                    <TableRegistros data={filteredData} />
+                     <TableRegistros data={dataJson} />
                 </div>
 
         </div>
-        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <ModalForm title={title}/>
         </div>
     </>

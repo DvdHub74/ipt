@@ -5,14 +5,17 @@ import ModalForm from './ModalForm';
 
 const TableRegistros = ({data}) => {
     const titulo ='Editar Registro';
+    console.log(data)
+
+    const people = data.data;
 
   return (
     <>
 
 
 
-    <div class="table-responsive col-lg-9 col-11  mx-auto">
-        <table class="table table-light table-hover">
+    <div className="table-responsive col-lg-9 col-11  mx-auto">
+        <table className="table table-light table-hover">
                 <thead className='table-dark'>
                     <tr>
                         <th scope="col" className='text-center' >Nombre</th>
@@ -22,7 +25,7 @@ const TableRegistros = ({data}) => {
                     </tr>
                 </thead>
                 <tbody>
-                {data && data.map((person, index) => (
+                {people && people.map((person, index) => (
                     <tr key={index}>
                         <td className='text-center'>{person.names}</td>
                         <td className='text-center'>{person.lastnames}</td>
@@ -40,11 +43,11 @@ const TableRegistros = ({data}) => {
                                     </button>
                                 </div>
                             </div>
-                            <div class="dropdown d-lg-none">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div className="dropdown d-lg-none">
+                                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <div className="d-flex justify-content-center gap-3">
                                     <button   data-bs-toggle="modal" data-bs-target="#exampleModal"  type="button" className='btn btn-info ' style={{ borderRadius: '50px' }}>
                                         <FontAwesomeIcon icon={faPenToSquare} />
@@ -76,7 +79,7 @@ const TableRegistros = ({data}) => {
             </table>
         </div>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <ModalForm title={titulo}/>
         </div>
 
