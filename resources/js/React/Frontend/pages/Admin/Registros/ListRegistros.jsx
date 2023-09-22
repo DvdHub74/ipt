@@ -14,7 +14,15 @@ const ListRegistros = () => {
 
             const fetchData = async () => {
                     try {
-                        const response = await axios.get('api/json');
+                        const token = localStorage.getItem('token');
+                        const config = {
+                            headers:{
+                                "Content-Type": "application/json",
+                                Authorization : `Bearer ${token}`
+                            }
+                        }
+
+                        const response = await axios.get('api/json', config);
 
                         setDataJson(response.data);
 
@@ -73,7 +81,6 @@ const ListRegistros = () => {
 
                 <div className="row mt-5 w-100">
                     <TableRegistros data={filteredData} />
-
                 </div>
 
         </div>

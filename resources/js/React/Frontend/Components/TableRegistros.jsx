@@ -1,10 +1,9 @@
-import React from 'react'
+import React,{useRef}from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faSave, faTrash, faX } from '@fortawesome/free-solid-svg-icons';
 import ModalForm from './ModalForm';
 
 const TableRegistros = ({data}) => {
-
     const titulo ='Editar Registro';
 
   return (
@@ -60,6 +59,18 @@ const TableRegistros = ({data}) => {
                         </td>
                     </tr>
                 ))}
+                {data == '' &&(
+                    <tr>
+                        <td colSpan="4" className="text-center">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                        </td>
+                    </tr>
+                )
+                }
+
+
 
                 </tbody>
             </table>
