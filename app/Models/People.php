@@ -15,7 +15,9 @@ class People extends Model
         'names',
         'lastnames',
         'age',
-        'active',
+        'active'
     ];
+
+
 
 }

@@ -34,6 +34,9 @@ Route::middleware('jwt.auth')->group(   function(){
 
     Route::prefix('data')->group(function () {
         Route::get('/people', [PeopleController::class, 'index']);
+        Route::post('/people', [PeopleController::class, 'create']);
+        Route::put('/people', [PeopleController::class, 'edit']);
+        Route::delete('/people', [PeopleController::class, 'delete']);
     });
 
 });

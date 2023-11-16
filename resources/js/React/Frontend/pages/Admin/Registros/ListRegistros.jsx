@@ -6,14 +6,13 @@ import axios from 'axios';
 import ModalForm from '../../../Components/ModalForm';
 const ListRegistros = () => {
     const [dataJson, setDataJson]= useState([]);
-    const [perPage, setPerPage] =useState(null);
+    const [perPage, setPerPage] =useState(5);
     const [total, setTotal] = useState(null);
     const [loadingData, setloadingData] = useState(false);
+    const [create, setCreate] = useState(null);
     const [page, setPage] =useState(1);
     const [lastPage, setLastPage] =useState("");
     const [searchTerm, setSearchTerm] = useState("");
-
-    const title = 'Nuevo Registro';
 
 
 
@@ -29,7 +28,7 @@ const ListRegistros = () => {
                                 Authorization : `Bearer ${token}`
                             }
                         }
-                        let filters = "?per_page="+ 5+"&page="+page;
+                        let filters = "?per_page="+ 5+"&page="+page+"&per_page="+perPage+"&name="+searchTerm;
                         const url = 'api/data/people'+filters;
                         const response = await axios.get( url, config);
 
@@ -44,11 +43,16 @@ const ListRegistros = () => {
                 }
 
             getData();
-        }, [page]);
+        }, [page, perPage,searchTerm]);
+
         const handleChange = (newValue) => {
             setPage(newValue);
-        };
 
+        };
+        const handleChangeSelect = (val) => {
+            setPerPage(val);
+
+        };
         const handleSearchChange = (event) => {
             setSearchTerm(event.target.value);
           };
@@ -66,7 +70,6 @@ const ListRegistros = () => {
                 <div className="row mt-5 mx-auto py-2 px-lg-5 ">
                 <section className='col-lg-6 col-sm-6 order-2 order-sm-1 order-lg-1 col-12  ms-lg-5 px-lg-5'>
                         <input className="form-control mx-auto w-lg-50 w-75 mt-3 mt-lg-0 mt-md-0 border-end-0 shadow ps-4  rounded-pill"
-                        value={searchTerm}
                         onChange={handleSearchChange}
                         type="search" placeholder="Buscar..." id="example-search-input"/>
                 </section>
@@ -78,7 +81,10 @@ const ListRegistros = () => {
 
                     <button
 
-                    data-bs-toggle="modal" data-bs-target="#exampleModal2"  type="button" className='btn btn-success shadow w-lg-25  rounded-pill' style={{ borderRadius: '50px' }}>
+                    data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                    type="button"
+                    onClick={()=> setCreate(true)}
+                    className='btn btn-success shadow w-lg-25  rounded-pill' style={{ borderRadius: '50px' }}>
                         <FontAwesomeIcon icon={faAdd}/> Nuevo
                     </button>
 
@@ -87,13 +93,21 @@ const ListRegistros = () => {
                 </div>
 
                 <div className="row mt-5 w-100">
-                     <TableRegistros data={dataJson} page={page} last={lastPage} total={total} onChange={handleChange} loaded={loadingData} />
+                     <TableRegistros
+                        data={dataJson}
+                        page={page}
+                        last={lastPage}
+                        total={total}
+                        onChange={handleChange}
+                        onSelect={handleChangeSelect}
+                        loaded={loadingData}
+                     />
 
                 </div>
 
         </div>
         <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <ModalForm title={title}/>
+                <ModalForm  create={create} />
         </div>
     </>
   )

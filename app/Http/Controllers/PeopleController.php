@@ -18,7 +18,11 @@ class PeopleController extends Controller
     {
         try {
             // $res = People::all();
-            $res = People::orderBy('id', 'desc')->paginate($request->input('per_page', 5));
+            $res = People::orderBy('id', 'desc');
+            if($request->name != null){
+                $res->whereRaw('LOWER(names) LIKE ?', ['%' . strtolower($request->name) . '%']);
+            }
+            $res = $res->paginate($request->input('per_page', 5));
 
             return response()->json([$res],200);
         } catch (Exception $e) {
@@ -31,64 +35,40 @@ class PeopleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        try {
+            $person = People::create($request->all());
+
+            return $person;
+        } catch (\Throwable $th) {
+            return response()->json([$th->getMessage()], 500);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function edit(Request $request)
     {
-        //
+        try {
+            $data = $request->except('id');
+            $person = People::where('id',$request->id)->update($data);
+
+
+            return $person;
+        } catch (\Throwable $th) {
+            return response()->json([$th->getMessage()], 500);
+        }
+    }
+    public function delete(Request $request)
+    {
+        try {
+            $person = People::find($request->input('id'));
+            $person->delete();
+
+            return response()->json("success", 200);
+        } catch (\Throwable $th) {
+            return response()->json([$th->getMessage()], 500);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\People  $people
-     * @return \Illuminate\Http\Response
-     */
-    public function show(People $people)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\People  $people
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(People $people)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\People  $people
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, People $people)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\People  $people
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(People $people)
-    {
-        //
-    }
 }
