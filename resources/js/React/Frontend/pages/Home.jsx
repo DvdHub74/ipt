@@ -127,7 +127,7 @@ const Home = () => {
 
             setTimeout(() => {
                 Swal.close();
-                navigate('/home');
+                navigate('/home/list-registros');
             }, 1000);
 
         } catch (error) {

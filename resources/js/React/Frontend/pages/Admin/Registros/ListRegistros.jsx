@@ -6,13 +6,21 @@ import axios from 'axios';
 import ModalForm from '../../../Components/ModalForm';
 const ListRegistros = () => {
     const [dataJson, setDataJson]= useState([]);
+    const [perPage, setPerPage] =useState(null);
+    const [total, setTotal] = useState(null);
+    const [loadingData, setloadingData] = useState(false);
+    const [page, setPage] =useState(1);
+    const [lastPage, setLastPage] =useState("");
     const [searchTerm, setSearchTerm] = useState("");
 
     const title = 'Nuevo Registro';
 
+
+
         useEffect(() => {
 
-            const fetchData = async () => {
+            const getData = async () => {
+                setloadingData(false)
                     try {
                         const token = localStorage.getItem('token');
                         const config = {
@@ -21,30 +29,29 @@ const ListRegistros = () => {
                                 Authorization : `Bearer ${token}`
                             }
                         }
+                        let filters = "?per_page="+ 5+"&page="+page;
+                        const url = 'api/data/people'+filters;
+                        const response = await axios.get( url, config);
 
-                        const response = await axios.get('api/data/people', config);
-
-
+                        setPage(response.data[0].current_page);
+                        setLastPage(response.data[0].last_page);
+                        setTotal(response.data[0].total);
                         setDataJson(response.data[0])
+                        setloadingData(true)
                     } catch (error) {
                         console.log(error);
                     }
                 }
 
-            fetchData();
-        }, []);
+            getData();
+        }, [page]);
+        const handleChange = (newValue) => {
+            setPage(newValue);
+        };
 
         const handleSearchChange = (event) => {
             setSearchTerm(event.target.value);
           };
-
-        // const filteredData = dataJson && dataJson.length > 0
-        // ? dataJson.filter((item) =>
-        //     item.names.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        //     item.lastnames.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        //     item.age.toLowerCase().includes(searchTerm.toLowerCase())
-        //   )
-        // : dataJson;
 
   return (
     <>
@@ -80,7 +87,8 @@ const ListRegistros = () => {
                 </div>
 
                 <div className="row mt-5 w-100">
-                     <TableRegistros data={dataJson} />
+                     <TableRegistros data={dataJson} page={page} last={lastPage} total={total} onChange={handleChange} loaded={loadingData} />
+
                 </div>
 
         </div>

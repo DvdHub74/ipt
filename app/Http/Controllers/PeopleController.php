@@ -14,11 +14,11 @@ class PeopleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
             // $res = People::all();
-            $res = People::paginate(10);
+            $res = People::orderBy('id', 'desc')->paginate($request->input('per_page', 5));
 
             return response()->json([$res],200);
         } catch (Exception $e) {
