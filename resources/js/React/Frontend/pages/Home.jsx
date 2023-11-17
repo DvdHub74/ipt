@@ -12,8 +12,8 @@ const Home = () => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
 
-    const [emailLogin, setEmailLogin] = useState("");
-    const [passwordLogin, setPasswordLogin] = useState("");
+    const [emailLogin, setEmailLogin] = useState("xd@gmail.com");
+    const [passwordLogin, setPasswordLogin] = useState("123123123");
 
 
     const inputStyle = {
@@ -116,13 +116,14 @@ const Home = () => {
 
             const email = emailLogin;
             const password = passwordLogin;
-            const datos = await axios.post('api/login',{email, password});
+            const response = await axios.post('api/login',{email, password});
             Swal.fire({
                 title: "Inicio sesión correctamente!",
                 icon: "success",
             });
 
-            localStorage.setItem('token',datos.data.access_token)
+            localStorage.setItem('token',response.data.access_token)
+            localStorage.setItem('user',JSON.stringify(response.data.user))
 
             setTimeout(() => {
                 Swal.close();
