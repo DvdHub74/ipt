@@ -1,5 +1,97 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@300&display=swap');
+.offcanvas {
+    width: 15% !important;
+  }
+  @media (max-width: 1300px) {
+    .offcanvas {
+      width: 20% !important;
+    }
+  }
+  /* Pantalla mediana (md) - 30% */
+  @media (max-width: 992px) {
+    .offcanvas {
+      width: 30% !important;
+    }
+  }
 
+  /* Pantalla pequeña (sm) - 45% */
+  @media (max-width: 768px) {
+    .offcanvas {
+      width: 45% !important;
+    }
+  }
+
+  /* Pantalla muy pequeña (xs) - 55% */
+  @media (max-width: 576px) {
+    .offcanvas {
+      width: 65% !important;
+    }
+    .iconClose{
+        font-size:2.5em;
+        margin-top: 10px !important;
+      }
+  }
+
+.iconClose:hover{
+color: #463EB6 !important;
+}
+.btnMenu:hover{
+    background: #463EB6 !important;
+}
+
+.btnMenu{
+  border-radius: 100px;
+}
+.titlePage{
+    color: #2F288B;
+    font-size: 3em;
+    font-weight: bolder;
+
+}
+
+
+
+
+
+.customControl::placeholder {
+    font-size: 1em;
+    color: rgba(0,0,0, 0.5);
+  }
+
+  .headerMain{
+    background-color: rgba(4,0,0, 0.25) !important;
+  }
+
+
+
+  @media (max-width: 767px) {
+    .containerLogin{
+        background: none !important;
+    }
+    .cardLogin{
+        background: white !important;
+
+    }
+  }
+
+  /* Pantalla pequeña (sm) - 45% */
+  @media (max-width: 767px) {
+    .cardLogin {
+      width: 65% !important;
+    }
+  }
+
+  /* Pantalla muy pequeña (xs) - 55% */
+  @media (max-width: 576px) {
+    .cardLogin {
+      width: 90% !important;
+    }
+
+  }
+.btnLogin:hover{
+    background: #463EB6 !important;
+}
+*{
+    font-family: 'Montserrat', sans-serif;
+}
 

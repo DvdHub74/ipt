@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\proofController;
+use App\Models\People;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +18,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+
+
+
+Route::post('/register',[AuthController::class, 'register']);
+Route::post('/login',[AuthController::class, 'login']);
+
+Route::middleware('jwt.auth')->group(   function(){
+    Route::get('/json', [proofController::class , 'json']);
+    Route::get('/profile', [AuthController::class , 'profile']);
+    Route::get('/logout', [AuthController::class , 'logout']);
+    Route::post('/autenticar', [AuthController::class , 'autenticar']);
+
+    Route::prefix('data')->group(function () {
+        Route::get('/people', [PeopleController::class, 'index']);
+        Route::post('/people', [PeopleController::class, 'create']);
+        Route::put('/people', [PeopleController::class, 'edit']);
+        Route::delete('/people', [PeopleController::class, 'delete']);
+    });
+
 });

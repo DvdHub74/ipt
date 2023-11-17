@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class proofController extends Controller
+{
+    public function json(Request $request){
+
+        $jsonData = '[
+            {
+              "names": "Juan Carlos",
+              "lastnames": "Pérez García",
+              "age": "38"
+            },
+            {
+              "names": "María Elena",
+              "lastnames": "González López",
+              "age": "45"
+            },
+            {
+              "names": "Luis Miguel",
+              "lastnames": "Rodríguez Martínez",
+              "age": "52"
+            },
+            {
+              "names": "Ana María",
+              "lastnames": "Martínez Rodríguez",
+              "age": "41"
+            },
+            {
+              "names": "Pedro Antonio",
+              "lastnames": "Fernández Pérez",
+              "age": "30"
+            },
+            {
+              "names": "Laura Isabel",
+              "lastnames": "Sánchez López",
+              "age": "27"
+            },
+            {
+              "names": "Carlos Eduardo",
+              "lastnames": "Gómez García",
+              "age": "35"
+            },
+            {
+              "names": "Sofía Valentina",
+              "lastnames": "Hernández Martínez",
+              "age": "29"
+            },
+            {
+              "names": "Javier Andrés",
+              "lastnames": "Díaz Rodríguez",
+              "age": "48"
+            },
+            {
+              "names": "Valentina Camila",
+              "lastnames": "Torres López",
+              "age": "31"
+            }
+        ]';
+
+
+        $dataArray = json_decode($jsonData, true);
+
+        return $dataArray;
+    }
+
+
+}
