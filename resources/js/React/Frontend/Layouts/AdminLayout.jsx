@@ -17,15 +17,26 @@ import myImage from "../../../../../public/images/logo.png";
 import "../../../../css/app.css";
 import useAuth from '../hooks/useAuth'
 
-
 const AdminLayout = () => {
     const navigate = useNavigate()
     const [cargando, setCargando] = useState(true);
 
     const logout = async () => {
+        const token = localStorage.getItem('token');
 
-        localStorage.removeItem('token');
-        navigate('/');
+        const config = {
+            headers:{
+                Authorization : `Bearer ${token}`
+            }
+        }
+        try {
+            const response = await axios.get('/api/logout', config);
+            localStorage.removeItem('token');
+            navigate('/');
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     const linkStyle = {
@@ -242,13 +253,13 @@ const AdminLayout = () => {
                 </div>
             </div>
 
-            <main className="p-0 m-0  vw-100 mainContain">
+            <main className="p-0 m-0  vw-100 ">
                 <Outlet />
             </main>
             </div>
         }
         {cargando &&
-          <main className="p-0 m-0  vw-100 mainContain">
+          <main className="p-0 m-0  vw-100 ">
             <div className="d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
 
                 <div className="spinner-border text-info" style={{width:'5em', height:'5em'}} role="status">

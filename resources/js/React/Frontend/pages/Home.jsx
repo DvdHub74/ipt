@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-
 const Home = () => {
     const [form, setForm] = useState(false);
 

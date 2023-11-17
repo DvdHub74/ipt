@@ -49,32 +49,46 @@ const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
 
     }
     const handleDelete = async (id) => {
+        const resultado = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¡Esta acción no se puede deshacer!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, hazlo',
+            cancelButtonText: 'Cancelar'
+          });
+
         const token = localStorage.getItem('token');
         const config = {
             headers:{
                 Authorization : `Bearer ${token}`
             }
         }
-        try {
-            const url = 'api/data/people?id='+id;
-            const response = await axios.delete(url,config);
-            Swal.fire({
-                title: "Registro eliiminado correctamente!",
-                icon: "success",
-            });
+        if(resultado.isConfirmed){
 
-            setTimeout(() => {
-                Swal.close();
-                window.location.reload();
-            }, 1000);
+            try {
+                const url = 'api/data/people?id='+id;
+                const response = await axios.delete(url,config);
+                Swal.fire({
+                    title: "Registro eliiminado correctamente!",
+                    icon: "success",
+                });
 
-        } catch (error) {
-            console.log(error);
+                setTimeout(() => {
+                    Swal.close();
+                    window.location.reload();
+                }, 1000);
+
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
     return (
         <>
-            <div className="table-responsive col-lg-9 col-11  mx-auto ">
+            <div className="table-responsive col-lg-9 col-10  mx-auto ">
                 <div className="row">
                     <div className="col-md-1">
                         <select onChange={handleChange} className="form-select me-2 mb-3" >
@@ -87,102 +101,61 @@ const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
                     </div>
                     <p className="col-md-2 mt-1">Registros por pagina</p>
                 </div>
-
-                <table className="table table-light table-hover">
-                    <thead className="table-dark">
-                        <tr>
-                            <th scope="col" className="text-center">
-                                Nombre
-                            </th>
-                            <th scope="col" className="text-center">
-                                Apellido
-                            </th>
-                            <th scope="col" className="text-center">
-                                Edad
-                            </th>
-                            <th scope="col" className="text-center">
-                                Acciones
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {loaded && people &&
-                            people.map((person, index) => (
-                                <tr key={index}>
-                                    <td className="text-center">
-                                        {person.names}
-                                    </td>
-                                    <td className="text-center">
-                                        {person.lastnames}
-                                    </td>
-                                    <td className="text-center">
-                                        {person.age}
-                                    </td>
-                                    <td className="text-center">
-                                        <div className="row justify-content-center d-lg-flex d-none">
-                                            <div className="col-2 text-center">
-                                                <button
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"
-                                                    type="button"
-                                                    onClick={() => handleEdit(person)}
-                                                    className="btn btn-info"
-                                                    style={{
-                                                        borderRadius: "50px",
-                                                    }}
-                                                >
-                                                    <FontAwesomeIcon
-                                                        icon={faPenToSquare}
-                                                    />
-                                                </button>
-                                            </div>
-                                            <div className="col-2 text-center">
-                                                <button
-                                                    onClick={() => handleDelete(person.id)}
-                                                    className="btn btn-danger"
-                                                    style={{
-                                                        borderRadius: "50px",
-                                                    }}
-                                                >
-                                                    <FontAwesomeIcon
-                                                        icon={faTrash}
-                                                    />
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div className="dropdown d-lg-none">
-                                            <button
-                                                className="btn btn-secondary dropdown-toggle"
-                                                type="button"
-                                                id="dropdownMenuButton1"
-                                                data-bs-toggle="dropdown"
-                                                aria-expanded="false"
-                                            ></button>
-                                            <ul
-                                                className="dropdown-menu"
-                                                aria-labelledby="dropdownMenuButton1"
-                                            >
-                                                <div className="d-flex justify-content-center gap-3">
+                <div className="card shadow py-4 ">
+                    <table className="table table-light table-hover" style={{borderRadius: '10px'}}>
+                        <thead className="table-secondary">
+                            <tr>
+                                <th scope="col" className="text-center">
+                                    Nombre
+                                </th>
+                                <th scope="col" className="text-center">
+                                    Apellido
+                                </th>
+                                <th scope="col" className="text-center">
+                                    Edad
+                                </th>
+                                <th scope="col" className="text-center">
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {loaded && people &&
+                                people.map((person, index) => (
+                                    <tr key={index}>
+                                        <td className="text-center">
+                                            {person.names}
+                                        </td>
+                                        <td className="text-center">
+                                            {person.lastnames}
+                                        </td>
+                                        <td className="text-center">
+                                            {person.age}
+                                        </td>
+                                        <td className="text-center">
+                                            <div className="row justify-content-center d-lg-flex d-none">
+                                                <div className="col-2 text-center">
                                                     <button
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal"
                                                         type="button"
-                                                        className="btn btn-info "
+                                                        onClick={() => handleEdit(person)}
+                                                        className="btn btn-info"
                                                         style={{
-                                                            borderRadius:
-                                                                "50px",
+                                                            borderRadius: "50px",
                                                         }}
                                                     >
                                                         <FontAwesomeIcon
                                                             icon={faPenToSquare}
                                                         />
                                                     </button>
-
+                                                </div>
+                                                <div className="col-2 text-center">
                                                     <button
-                                                        className="btn btn-danger "
+                                                        onClick={() => handleDelete(person.id)}
+                                                        className="btn btn-danger"
                                                         style={{
-                                                            borderRadius:
-                                                                "50px",
+                                                            borderRadius: "50px",
                                                         }}
                                                     >
                                                         <FontAwesomeIcon
@@ -190,28 +163,70 @@ const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
                                                         />
                                                     </button>
                                                 </div>
-                                            </ul>
+                                            </div>
+                                            <div className="dropdown d-lg-none">
+                                                <button
+                                                    className="btn btn-secondary dropdown-toggle"
+                                                    type="button"
+                                                    id="dropdownMenuButton1"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false"
+                                                ></button>
+                                                <ul
+                                                    className="dropdown-menu"
+                                                    aria-labelledby="dropdownMenuButton1"
+                                                >
+                                                    <div className="d-flex justify-content-center gap-3">
+                                                        <button
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal"
+                                                            type="button"
+                                                            className="btn btn-info "
+                                                            style={{
+                                                                borderRadius:
+                                                                    "50px",
+                                                            }}
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                icon={faPenToSquare}
+                                                            />
+                                                        </button>
+
+                                                        <button
+                                                            className="btn btn-danger "
+                                                            style={{
+                                                                borderRadius:
+                                                                    "50px",
+                                                            }}
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                icon={faTrash}
+                                                            />
+                                                        </button>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            {!loaded && (
+                                <tr>
+                                    <td colSpan="4" className="text-center">
+                                        <div
+                                            className="spinner-border text-primary"
+                                            role="status"
+                                        >
+                                            <span className="visually-hidden">
+                                                Loading...
+                                            </span>
                                         </div>
                                     </td>
                                 </tr>
-                            ))}
-                        {!loaded && (
-                            <tr>
-                                <td colSpan="4" className="text-center">
-                                    <div
-                                        className="spinner-border text-primary"
-                                        role="status"
-                                    >
-                                        <span className="visually-hidden">
-                                            Loading...
-                                        </span>
-                                    </div>
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-                <section className="d-flex justify-content-center">
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+                <section className="d-flex  mt-3 justify-content-center">
 
                 <nav aria-label="Page navigation example ">
                         <ul className="pagination">

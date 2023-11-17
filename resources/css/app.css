@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600;700&display=swap');
-
-/* Pantalla grande (lg) - 15% */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@300&display=swap');
 .offcanvas {
     width: 15% !important;
   }
@@ -48,27 +46,14 @@ color: #463EB6 !important;
     color: #2F288B;
     font-size: 3em;
     font-weight: bolder;
-    font-family: 'Exo 2', sans-serif;
 
 }
 
-
-.mainContain::before {
-    z-index: -10;
-    background-image: url('https://img.freepik.com/free-vector/prickly-juniper-branch-beige-gray-minimal-background_53876-113047.jpg');
-    background-size: cover;
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    filter: blur(5px);
-}
 
 
 
 
 .customControl::placeholder {
-    font-family: 'Exo 2', sans-serif;
     font-size: 1em;
     color: rgba(0,0,0, 0.5);
   }
@@ -106,6 +91,7 @@ color: #463EB6 !important;
 .btnLogin:hover{
     background: #463EB6 !important;
 }
-.btnLogin{
-    font-family: 'Exo 2', sans-serif;
+*{
+    font-family: 'Montserrat', sans-serif;
 }
+

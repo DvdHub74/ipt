@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from 'axios';
 import Swal from "sweetalert2";
 import {
     faSave,
@@ -186,7 +185,7 @@ const ModalForm = ({ create, personArray }) => {
                                 </div>
                                 <div className="col-10 my-3 mx-auto">
                                     <input
-                                        type="text"
+                                        type="number"
                                         className="form-control ps-3 customControl"
                                         placeholder="Edad..."
                                          value={age}

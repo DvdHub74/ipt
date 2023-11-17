@@ -2,7 +2,6 @@ import { faAdd, faFilePdf, faPenToSquare, faSearch } from '@fortawesome/free-sol
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TableRegistros from '../../../Components/TableRegistros';
-import axios from 'axios';
 import ModalForm from '../../../Components/ModalForm';
 const ListRegistros = () => {
     const [dataJson, setDataJson]= useState([]);
@@ -73,10 +72,10 @@ const ListRegistros = () => {
                         onChange={handleSearchChange}
                         type="search" placeholder="Buscar..." id="example-search-input"/>
                 </section>
-                <section className='col-lg-5 col-sm-6 col-xs-12 order-sm-2  mt-3  mt-lg-0 mt-md-0 order-1  order-lg-2  col-12 justify-content-center text-center'>
+                <section className='col-lg-4 col-sm-6 col-xs-12 order-sm-2  mt-3  mt-lg-0 mt-md-0 order-1  order-lg-2  col-12 text-lg-end text-center'>
 
-                    <button className='btn me-3 w-lg-25 btn-warning shadow  rounded-pill' >
-                       <FontAwesomeIcon icon={faFilePdf}/> Reporte
+                    <button className='btn me-3 w-lg-25 btn-warning shadow' >
+                       <FontAwesomeIcon icon={faFilePdf}/>
                     </button>
 
                     <button
@@ -84,8 +83,8 @@ const ListRegistros = () => {
                     data-bs-toggle="modal" data-bs-target="#exampleModal2"
                     type="button"
                     onClick={()=> setCreate(true)}
-                    className='btn btn-success shadow w-lg-25  rounded-pill' style={{ borderRadius: '50px' }}>
-                        <FontAwesomeIcon icon={faAdd}/> Nuevo
+                    className='btn btn-success shadow w-lg-25'>
+                        <FontAwesomeIcon icon={faAdd}/>
                     </button>
 
                 </section>
