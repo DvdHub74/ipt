@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\proofController;
+use App\Http\Controllers\ResourceController;
 use App\Models\People;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
 
-Route::middleware('jwt.auth')->group(   function(){
+Route::middleware(['jwt.auth', 'custom-loger'])->group(   function(){
     Route::get('/json', [proofController::class , 'json']);
     Route::get('/profile', [AuthController::class , 'profile']);
     Route::get('/logout', [AuthController::class , 'logout']);
@@ -37,6 +38,9 @@ Route::middleware('jwt.auth')->group(   function(){
         Route::post('/people', [PeopleController::class, 'create']);
         Route::put('/people', [PeopleController::class, 'edit']);
         Route::delete('/people', [PeopleController::class, 'delete']);
+    });
+    Route::prefix('resource')->group(function () {
+        Route::get('/logs', [ResourceController::class, 'logs']);
     });
 
 });

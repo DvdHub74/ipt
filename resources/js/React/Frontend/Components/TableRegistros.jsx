@@ -106,6 +106,9 @@ const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
                         <thead className="table-secondary">
                             <tr>
                                 <th scope="col" className="text-center">
+                                    ID
+                                </th>
+                                <th scope="col" className="text-center">
                                     Nombre
                                 </th>
                                 <th scope="col" className="text-center">
@@ -123,6 +126,9 @@ const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
                             {loaded && people &&
                                 people.map((person, index) => (
                                     <tr key={index}>
+                                        <td className="text-center">
+                                            {person.id}
+                                        </td>
                                         <td className="text-center">
                                             {person.names}
                                         </td>
