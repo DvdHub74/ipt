@@ -10,6 +10,7 @@ import {
 import ModalForm from "./ModalForm";
 
 const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
+    console.log(data);
     const [value, setValue] = useState(null);
     const [personArray, setPersonArray] = useState(null);
 
@@ -88,7 +89,7 @@ const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
     }
     return (
         <>
-            <div className="table-responsive col-lg-9 col-10  mx-auto ">
+            <div className="table-responsive col-lg-9 col-12  mx-auto ">
                 <div className="row">
                     <div className="col-md-1">
                         <select onChange={handleChange} className="form-select me-2 mb-3" >
@@ -101,13 +102,11 @@ const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
                     </div>
                     <p className="col-md-2 mt-1">Registros por pagina</p>
                 </div>
-                <div className="card shadow py-4 ">
-                    <table className="table table-light table-hover" style={{borderRadius: '10px'}}>
+                <div className="card shadow py-4">
+                    <table className="table  table-light table-hover" style={{borderRadius: '10px'}}>
                         <thead className="table-secondary">
                             <tr>
-                                <th scope="col" className="text-center">
-                                    ID
-                                </th>
+
                                 <th scope="col" className="text-center">
                                     Nombre
                                 </th>
@@ -118,6 +117,9 @@ const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
                                     Edad
                                 </th>
                                 <th scope="col" className="text-center">
+                                    Estado
+                                </th>
+                                <th scope="col" className="text-center">
                                     Acciones
                                 </th>
                             </tr>
@@ -126,9 +128,7 @@ const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
                             {loaded && people &&
                                 people.map((person, index) => (
                                     <tr key={index}>
-                                        <td className="text-center">
-                                            {person.id}
-                                        </td>
+
                                         <td className="text-center">
                                             {person.names}
                                         </td>
@@ -137,6 +137,9 @@ const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
                                         </td>
                                         <td className="text-center">
                                             {person.age}
+                                        </td>
+                                        <td className="text-center">
+                                            {person.active == 1 ? "Activo": "Inactivo"}
                                         </td>
                                         <td className="text-center">
                                             <div className="row justify-content-center d-lg-flex d-none">
@@ -217,7 +220,7 @@ const TableRegistros = ({ data, page, last,onChange, onSelect, loaded}) => {
                                 ))}
                             {!loaded && (
                                 <tr>
-                                    <td colSpan="4" className="text-center">
+                                    <td colSpan="5" className="text-center">
                                         <div
                                             className="spinner-border text-primary"
                                             role="status"

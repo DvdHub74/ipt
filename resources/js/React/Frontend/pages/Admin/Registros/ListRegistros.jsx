@@ -91,7 +91,7 @@ const ListRegistros = () => {
 
                 </div>
 
-                <div className="row mt-5 w-100">
+                <div className="row mt-5 p-1 ">
                      <TableRegistros
                         data={dataJson}
                         page={page}

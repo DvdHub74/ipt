@@ -76,7 +76,7 @@ const ListCampos = () => {
 
     return (
         <>
-            <main className="p-5">
+            <main className="p-1">
                 <div className="row text-center">
                     <div className="col">
                         <h1 className="display-2">Datos 2</h1>

@@ -46,6 +46,14 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "init-project": [
+            "composer install",
+            "npm install",
+            "php artisan migrate:fresh",
+            "php artisan db:seed",
+            "php artisan serve --port=2774",
+            "npm run dev"
         ]
     },
     "extra": {
