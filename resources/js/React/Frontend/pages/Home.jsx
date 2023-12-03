@@ -12,7 +12,7 @@ const Home = () => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
 
-    const [emailLogin, setEmailLogin] = useState("xd@gmail.com");
+    const [emailLogin, setEmailLogin] = useState("admin@gmail.com");
     const [passwordLogin, setPasswordLogin] = useState("123123123");
 
 

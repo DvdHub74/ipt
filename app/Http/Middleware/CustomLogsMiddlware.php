@@ -26,9 +26,25 @@ class CustomLogsMiddlware
 
         $endTime = microtime(true);
 
+        $action = '';
+
+        switch ($request->method()) {
+            case 'POST':
+                $action = 'Creación de datos';
+                break;
+            case 'PUT':
+                $action = 'Modificación de datos';
+                break;
+            case 'GET':
+                $action = 'Consulta de datos';
+                break;
+            case 'DELETE':
+                $action = 'Eliminación de datos';
+                break;
+        }
         $data = [
             "user" => auth()->guard('api')->user()->id,
-            "action" => $request->method(),
+            "action" => $action,
             "user-agent" => $userAgent,
             "ip" => $ip,
             "url" => $url,

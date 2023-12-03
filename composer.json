@@ -54,6 +54,10 @@
             "php artisan db:seed",
             "php artisan serve --port=2774",
             "npm run dev"
+        ],
+        "restart-project": [
+            "php artisan migrate:fresh",
+            "php artisan db:seed"
         ]
     },
     "extra": {

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Log extends Model
 {
@@ -17,5 +18,10 @@ class Log extends Model
 
     public function user(){
         $this->belongsTo(User::class, 'user_id');
+    }
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->setTimezone('America/El_Salvador')->format('d-m-Y h:i:s');
+
     }
 }
