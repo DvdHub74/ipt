@@ -24,6 +24,7 @@ class PeopleSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123123123'),
+            'global' => 1,
             'active' => 1
         ]);
 

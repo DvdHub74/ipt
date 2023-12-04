@@ -8,6 +8,7 @@ use App\Models\People;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PeopleController extends Controller
 {
@@ -49,6 +50,18 @@ class PeopleController extends Controller
     public function create(Request $request)
     {
         try {
+            $validator = Validator::make($request->all(), [
+                'names' => 'required',
+                'lastnames' => 'required',
+                'age' => 'required',
+                'ministrie' => 'required',
+                'birthday' => 'required',
+                'state' => 'required',
+            ]);
+            if ($validator->fails()) {
+                $errors = $validator->errors()->all();
+                return response()->json(['errors' => $errors], 422);
+            }
 
             $person = People::create([
                 "names" => $request->names,
@@ -58,6 +71,8 @@ class PeopleController extends Controller
                 "state" => $request->state,
                 "active" => 1,
             ]);
+
+
 
             $person->ministrie()->sync($request->ministrie);
 
@@ -90,6 +105,7 @@ class PeopleController extends Controller
     {
         try {
             $person = People::find($request->input('id'));
+            $person->ministrie()->detach();
             $person->delete();
 
             return response()->json("success", 200);

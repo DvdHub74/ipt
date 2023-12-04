@@ -287,7 +287,7 @@ const ModalForm = ({ create, personArray }) => {
                                                 setStatePeople(e.target.value)
                                             }
                                         />
-                                        Amigo
+                                        Inicial
                                     </span>
                                     <span>
                                         <input
