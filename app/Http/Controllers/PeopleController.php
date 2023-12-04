@@ -6,6 +6,7 @@ use Exception;
 use LDAP\Result;
 use App\Models\People;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class PeopleController extends Controller
@@ -64,10 +65,15 @@ class PeopleController extends Controller
     {
         try {
             $data = $request->except('id','ministrie');
-            $person = People::where('id', $request->id)->update($data);
+            People::where('id', $request->id)->update($data);
 
 
-            return $person;
+            DB::table('people_ministrie')->where('id_people', $request->id)->update([
+                'id_ministrie'=> $request->ministrie,
+                'updated_at' => Carbon::now()
+            ]);
+
+            return response()->json("success", 200);
         } catch (\Throwable $th) {
             return response()->json([$th->getMessage()], 500);
         }
