@@ -41,6 +41,7 @@ Route::middleware(['jwt.auth', 'custom-loger'])->group(   function(){
     });
     Route::prefix('resource')->group(function () {
         Route::get('/logs', [ResourceController::class, 'logs']);
+        Route::get('/ministrie', [ResourceController::class, 'ministrie']);
     });
 
 });

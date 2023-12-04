@@ -15,9 +15,14 @@ class People extends Model
         'names',
         'lastnames',
         'age',
+        'birthday',
+        'type',
+        'state',
         'active'
     ];
 
-
+    public function ministrie(){
+        return  $this->belongsToMany(Ministrie::class, 'people_ministrie', 'id_people','id_ministrie');
+    }
 
 }

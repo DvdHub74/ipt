@@ -2,10 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Ministrie;
+use App\Models\User;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PeopleSeeder extends Seeder
 {
@@ -16,15 +19,19 @@ class PeopleSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
 
-        foreach (range(1, 50) as $index) {
-            DB::table('people')->insert([
-                'names' => $faker->firstName,
-                'lastnames' => $faker->unique()->lastName,
-                'age' => $faker->numberBetween(18, 80),
-                'active' => $faker->boolean,
-            ]);
-        }
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('123123123'),
+            'active' => 1
+        ]);
+
+
+
+        Ministrie::create(['name' => 'EDC']);
+        Ministrie::create(['name' => 'CMF']);
+        Ministrie::create(['name' => 'FDB']);
+
     }
 }

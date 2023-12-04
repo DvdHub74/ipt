@@ -73,7 +73,7 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                 const url = "api/data/people?id=" + id;
                 const response = await axios.delete(url, config);
                 Swal.fire({
-                    title: "Registro eliiminado correctamente!",
+                    title: "Registro eliminado correctamente!",
                     icon: "success",
                 });
 
@@ -106,7 +106,7 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                 </div>
                 <div className="card shadow">
                     <div class="card-body">
-                        <div className="table-responsive"   style={{ height: '350px', maxHeight: '500px'}}>
+                        <div className="table-responsive"  >
                             <table
                                 className="table table-hover table-striped mb-0"
                                 style={{ borderRadius: "10px" }}
@@ -124,6 +124,15 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                                         </th>
                                         <th scope="col" className="text-center">
                                             Edad
+                                        </th>
+                                        <th scope="col" className="text-center">
+                                            Tipo
+                                        </th>
+                                        <th scope="col" className="text-center">
+                                            Ministerio
+                                        </th>
+                                        <th scope="col" className="text-center">
+                                            Fecha Nacimiento
                                         </th>
                                         <th scope="col" className="text-center">
                                             Estado
@@ -149,6 +158,15 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                                                 </td>
                                                 <td className="text-center">
                                                     {person.age}
+                                                </td>
+                                                <td className="text-center">
+                                                    {person.state == 1 ? 'Inicial' : person.state == 2 ? 'Proceso': 'Propiedad'}
+                                                </td>
+                                                <td className="text-center">
+                                                    {person.ministrie[0].name}
+                                                </td>
+                                                <td className="text-center">
+                                                    {person.birthday}
                                                 </td>
                                                 <td className="text-center">
                                                     {person.active == 1

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\People;
 use Exception;
-use Illuminate\Http\Request;
 use LDAP\Result;
+use App\Models\People;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PeopleController extends Controller
 {
@@ -17,28 +18,40 @@ class PeopleController extends Controller
     public function index(Request $request)
     {
         try {
-            // $res = People::all();
-            $res = People::orderBy('id', 'desc');
-            if($request->name != null){
+            $res = People::with('ministrie')->orderBy('id', 'desc');
+            if ($request->name != null) {
                 $res->whereRaw('LOWER(names) LIKE ?', ['%' . strtolower($request->name) . '%']);
             }
             $res = $res->paginate($request->input('per_page', 5));
 
-            return response()->json([$res],200);
+            $res->transform(function ($res) {
+
+                $res->ministrie_id = $res->ministrie[0]['id'];
+                return $res;
+            });
+
+            return response()->json([$res], 200);
         } catch (Exception $e) {
-            return response()->json(["error" => $e->getMessage()],400);            //throw $th;
+            return response()->json(["error" => $e->getMessage()], 400);
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create(Request $request)
     {
         try {
-            $person = People::create($request->all());
+
+            $person = People::create([
+                "names" => $request->names,
+                "lastnames" => $request->lastnames,
+                "birthday" => $request->birthday,
+                "age" => $request->age,
+                "state" => $request->state,
+                "active" => 1,
+            ]);
+
+            $person->ministrie()->sync($request->ministrie);
+
 
             return $person;
         } catch (\Throwable $th) {
@@ -46,11 +59,12 @@ class PeopleController extends Controller
         }
     }
 
+
     public function edit(Request $request)
     {
         try {
-            $data = $request->except('id');
-            $person = People::where('id',$request->id)->update($data);
+            $data = $request->except('id','ministrie');
+            $person = People::where('id', $request->id)->update($data);
 
 
             return $person;
@@ -69,6 +83,4 @@ class PeopleController extends Controller
             return response()->json([$th->getMessage()], 500);
         }
     }
-
-
 }
