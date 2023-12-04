@@ -58,7 +58,7 @@ const ListRegistros = () => {
 
   return (
     <>
-        <div className='container-fluid p-0 m-0 vw-100 vh-100 px-lg-5 mt-2'>
+        <div className='container-fluid p-0 m-0 mt-2'>
                <div className="row justify-content-centeralign-items-center g-2">
                     <div className="col-lg-8 mx-auto  text-center">
                         <span className='titlePage'>
@@ -91,7 +91,7 @@ const ListRegistros = () => {
 
                 </div>
 
-                <div className="row mt-5 p-1 ">
+                <div className="row mt-5">
                      <TableRegistros
                         data={dataJson}
                         page={page}
