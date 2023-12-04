@@ -23,10 +23,18 @@ class PeopleController extends Controller
             if ($request->name != null) {
                 $res->whereRaw('LOWER(names) LIKE ?', ['%' . strtolower($request->name) . '%']);
             }
+            $user = auth()->guard('api')->user()->load('ministrie');
+
+            if ($user->global != true) {
+                $ministrie_id = $user->ministrie[0]['id'];
+                $res->whereHas('ministrie', function ($query) use ($ministrie_id) {
+                    $query->where('id_ministrie', $ministrie_id);
+                });
+            }
             $res = $res->paginate($request->input('per_page', 5));
 
-            $res->transform(function ($res) {
 
+            $res->transform(function ($res) {
                 $res->ministrie_id = $res->ministrie[0]['id'];
                 return $res;
             });
@@ -45,7 +53,7 @@ class PeopleController extends Controller
             $person = People::create([
                 "names" => $request->names,
                 "lastnames" => $request->lastnames,
-                "birthday" => $request->birthday,
+                "birthday" => Carbon::parse($request->birthday)->format('d-m-Y'),
                 "age" => $request->age,
                 "state" => $request->state,
                 "active" => 1,
@@ -64,12 +72,12 @@ class PeopleController extends Controller
     public function edit(Request $request)
     {
         try {
-            $data = $request->except('id','ministrie');
+            $data = $request->except('id', 'ministrie');
             People::where('id', $request->id)->update($data);
 
 
             DB::table('people_ministrie')->where('id_people', $request->id)->update([
-                'id_ministrie'=> $request->ministrie,
+                'id_ministrie' => $request->ministrie,
                 'updated_at' => Carbon::now()
             ]);
 

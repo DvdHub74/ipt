@@ -28,6 +28,8 @@ class AuthController extends Controller
                 'password' => bcrypt($req->password),
             ]);
 
+            $user->ministrie()->sync($req->ministrie);
+
             return response()->json([$user], 200);
 
         } catch (Exception $e) {

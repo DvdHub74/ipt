@@ -25,6 +25,12 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
     ];
+
+    protected $attributes = [
+        'active' => 1,
+        'global' => false,
+    ];
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -56,4 +62,8 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function ministrie(){
+        return  $this->belongsToMany(Ministrie::class, 'user_ministrie', 'id_user','id_ministrie');
+    }
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import { HashRouter, Routes, Route } from "react-router-dom"
+import { HashRouter, Routes, Route , Navigate } from "react-router-dom"
 import Home from "../Frontend/pages/home"
 import AuthLayout from "../Frontend/Layouts/AuthLayout"
 import AdminLayout from "../Frontend/Layouts/AdminLayout"
@@ -15,7 +15,7 @@ import { AuthProvider } from "../Frontend/context/AuthProvider"
 function Main(){
     return (
          <HashRouter>
-
+            <AuthProvider>
                 <Routes>
                     <Route path="/" element={<AuthLayout/>}>
                         <Route index element={<Home/>}/>
@@ -28,8 +28,9 @@ function Main(){
                         <Route path="reportes" element={<Reportes/>}/>
                         <Route path="perfil" element={<Perfil/>}/>
                     </Route>
+                    <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
-
+            </AuthProvider>
          </HashRouter>
     )
   }

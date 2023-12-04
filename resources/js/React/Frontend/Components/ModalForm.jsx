@@ -48,7 +48,6 @@ const ModalForm = ({ create, personArray }) => {
         }
     }, [personArray]);
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = localStorage.getItem("token");
@@ -84,9 +83,8 @@ const ModalForm = ({ create, personArray }) => {
 
                 setTimeout(() => {
                     Swal.close();
-                    window.location.reload()
+                    window.location.reload();
                 }, 1000);
-
             } catch (error) {
                 Swal.fire({
                     title: "Ocurrio un error",
@@ -98,7 +96,6 @@ const ModalForm = ({ create, personArray }) => {
                 setTimeout(() => {
                     Swal.close();
                 }, 1000);
-
             }
         } else {
             try {
@@ -261,12 +258,18 @@ const ModalForm = ({ create, personArray }) => {
                                             e.target.placeholder = "Edad...";
                                         }}
                                     >
+                                        <option hidden>
+                                            Seleccione
+                                        </option>
                                         {ministries &&
                                             ministries.map((option) => (
                                                 <option
                                                     key={option.id}
                                                     value={option.id}
-                                                    selected={option.id === ministrieOne}
+                                                    selected={
+                                                        option.id ===
+                                                        ministrieOne
+                                                    }
                                                 >
                                                     {option.name}
                                                 </option>

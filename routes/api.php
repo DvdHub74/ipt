@@ -45,3 +45,7 @@ Route::middleware(['jwt.auth', 'custom-loger'])->group(   function(){
     });
 
 });
+
+Route::prefix('public')->group(function () {
+    Route::get('/ministrie', [ResourceController::class, 'ministrie']);
+});

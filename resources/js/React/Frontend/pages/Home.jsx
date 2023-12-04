@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -14,6 +14,24 @@ const Home = () => {
 
     const [emailLogin, setEmailLogin] = useState("admin@gmail.com");
     const [passwordLogin, setPasswordLogin] = useState("123123123");
+    const [ministrie, setMinistrie] = useState("");
+    const [ministries, setMinistries] = useState([]);
+
+    useEffect(() => {
+        const getMinistries = async () => {
+            try {
+                const token = localStorage.getItem("token");
+                const url = "api/public/ministrie";
+                const response = await axios.get(url);
+
+                setMinistries(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        getMinistries();
+    }, []);
 
 
     const inputStyle = {
@@ -32,7 +50,7 @@ const Home = () => {
     };
     const handleRegister = async (e) => {
         e.preventDefault();
-        if ([name, email, password, repeatPassword].includes("")) {
+        if ([name, email, password, repeatPassword, ministrie].includes("")) {
             Swal.fire({
                 title: "Error al llenar el formulario",
                 text: "Todos los campos son requeridos",
@@ -79,6 +97,7 @@ const Home = () => {
                 name,
                 email,
                 password,
+                ministrie,
             });
 
             Swal.fire({
@@ -97,7 +116,7 @@ const Home = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        if([emailLogin, passwordLogin].includes('')){
+        if ([emailLogin, passwordLogin].includes("")) {
             Swal.fire({
                 title: "Error al llenar el formulario",
                 text: "Todos los campos son requeridos",
@@ -113,23 +132,21 @@ const Home = () => {
         }
 
         try {
-
             const email = emailLogin;
             const password = passwordLogin;
-            const response = await axios.post('api/login',{email, password});
+            const response = await axios.post("api/login", { email, password });
             Swal.fire({
                 title: "Inicio sesión correctamente!",
                 icon: "success",
             });
 
-            localStorage.setItem('token',response.data.access_token)
-            localStorage.setItem('user',JSON.stringify(response.data.user))
+            localStorage.setItem("token", response.data.access_token);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
 
             setTimeout(() => {
                 Swal.close();
-                navigate('/home/list-registros');
+                navigate("/home/list-registros");
             }, 1000);
-
         } catch (error) {
             Swal.fire({
                 title: "¡Hubo un error!",
@@ -165,7 +182,7 @@ const Home = () => {
                                     </div>
 
                                     <section className="card-body">
-                                        <form  onSubmit={handleLogin}>
+                                        <form onSubmit={handleLogin}>
                                             <div className="row mb-4 mt-3">
                                                 <div className="col-10 my-3 mx-auto">
                                                     <input
@@ -186,7 +203,11 @@ const Home = () => {
                                                                 "Correo";
                                                         }}
                                                         value={emailLogin}
-                                                        onChange={e=> setEmailLogin(e.target.value)}
+                                                        onChange={(e) =>
+                                                            setEmailLogin(
+                                                                e.target.value
+                                                            )
+                                                        }
                                                     />
                                                 </div>
                                                 <div className="col-10 my-3 mx-auto">
@@ -207,9 +228,12 @@ const Home = () => {
                                                             e.target.placeholder =
                                                                 "Apellido";
                                                         }}
-
                                                         value={passwordLogin}
-                                                        onChange={e=> setPasswordLogin(e.target.value)}
+                                                        onChange={(e) =>
+                                                            setPasswordLogin(
+                                                                e.target.value
+                                                            )
+                                                        }
                                                     />
                                                 </div>
                                                 <div className="col-10 mt-5 mx-auto text-center ">
@@ -349,6 +373,52 @@ const Home = () => {
                                                             )
                                                         }
                                                     />
+                                                </div>
+                                                <div className="col-10 my-3 mx-auto">
+                                                    <select
+                                                        className="form-control ps-3 customControl text-center"
+                                                        placeholder="Ministerio..."
+                                                        value={ministrie}
+                                                        onChange={(e) =>
+                                                            setMinistrie(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        style={inputStyle}
+                                                        onFocus={(e) => {
+                                                            e.target.style.borderBottom =
+                                                                "5px solid #463EB6";
+                                                            e.target.placeholder =
+                                                                "";
+                                                        }}
+                                                        onBlur={(e) => {
+                                                            e.target.style.borderBottom =
+                                                                "2px solid #ccc";
+                                                            e.target.placeholder =
+                                                                "Edad...";
+                                                        }}
+                                                    >
+                                                        <option disabled hidden value="">
+                                                            Seleccione
+                                                        </option>
+                                                        {ministries &&
+                                                            ministries.map(
+                                                                (option) => (
+                                                                    <option
+                                                                        key={
+                                                                            option.id
+                                                                        }
+                                                                        value={
+                                                                            option.id
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            option.name
+                                                                        }
+                                                                    </option>
+                                                                )
+                                                            )}
+                                                    </select>
                                                 </div>
                                                 <div className="col-10 my-3 mt-5 mx-auto text-center ">
                                                     <button

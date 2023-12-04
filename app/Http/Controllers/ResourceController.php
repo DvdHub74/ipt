@@ -34,6 +34,14 @@ class ResourceController extends Controller
 
     public function ministrie(Request $request){
 
-        return Ministrie::select('id', 'name')->get();
+        $ministrie = Ministrie::select('id', 'name')->get();
+
+        if(auth()->guard('api')->user() != null){
+            $user  = auth()->guard('api')->user()->load('ministrie');
+            if($user->global != true){
+                $ministrie = Ministrie::where('id', $user->ministrie[0]['id'])->get();
+            }
+        }
+        return $ministrie;
     }
 }

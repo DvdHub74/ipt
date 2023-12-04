@@ -8,7 +8,7 @@ import {
     faX,
 } from "@fortawesome/free-solid-svg-icons";
 import ModalForm from "./ModalForm";
-import '../../../../css/another.css'
+import "../../../../css/another.css";
 const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
     const [value, setValue] = useState(null);
     const [personArray, setPersonArray] = useState(null);
@@ -106,7 +106,7 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                 </div>
                 <div className="card shadow">
                     <div class="card-body">
-                        <div className="table-responsive"  >
+                        <div className="table-responsive">
                             <table
                                 className="table table-hover table-striped mb-0"
                                 style={{ borderRadius: "10px" }}
@@ -160,7 +160,11 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                                                     {person.age}
                                                 </td>
                                                 <td className="text-center">
-                                                    {person.state == 1 ? 'Inicial' : person.state == 2 ? 'Proceso': 'Propiedad'}
+                                                    {person.state == 1
+                                                        ? "Inicial"
+                                                        : person.state == 2
+                                                        ? "Proceso"
+                                                        : "Propiedad"}
                                                 </td>
                                                 <td className="text-center">
                                                     {person.ministrie[0].name}
@@ -271,7 +275,7 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                                     {!loaded && (
                                         <tr>
                                             <td
-                                                colSpan="5"
+                                                colSpan="9"
                                                 className="text-center"
                                             >
                                                 <div
