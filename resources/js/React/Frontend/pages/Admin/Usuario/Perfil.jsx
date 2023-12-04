@@ -12,7 +12,7 @@ const Perfil = () => {
     return (
         <>
             <div className="row d-flex justify-content-center py-5" style={{marginTop: '10rem'}}>
-                <div className="col-5">
+                <div className="col-12 col-lg-5">
                     <div className="container mt-5">
                         <div className="card shadow">
                             <div className="card-header bg-primary text-white">

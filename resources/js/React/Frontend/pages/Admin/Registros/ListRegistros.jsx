@@ -66,23 +66,23 @@ const ListRegistros = () => {
 
     return (
         <>
-            <div className="container-fluid p-0 m-0 mt-2">
+            <div className="container-fluid p-2 p-md-0 m-0 mt-2">
                 <div className="row justify-content-centeralign-items-center g-2">
                     <div className="col-lg-8 mx-auto  text-center">
                         <span className="titlePage">Lista de Registros</span>
                     </div>
                 </div>
-                <div className="row mt-5 mx-auto py-2 px-lg-5 ">
-                    <section className="col-lg-6 col-sm-6 order-2 order-sm-1 order-lg-1 col-12  ms-lg-5 px-lg-5">
+                <div className="row p-0 m-0 mt-5 ">
+                    <section className="col-lg-5  col-sm-6 order-2 order-sm-1 order-lg-1 col-12  ms-lg-5">
                         <input
-                            className="form-control mx-auto w-lg-50 w-75 mt-3 mt-lg-0 mt-md-0 border-end-0 shadow-sm ps-4  rounded"
+                            className="form-control mx-auto w-lg-50 w-75 mt-3 mt-lg-0 mt-md-0 shadow-sm ps-4  rounded"
                             onChange={handleSearchChange}
                             type="search"
                             placeholder="Buscar..."
                             id="example-search-input"
                         />
                     </section>
-                    <section className="col-lg-4 col-sm-6 col-xs-12 order-sm-2  mt-3  mt-lg-0 mt-md-0 order-1  order-lg-2  col-12 text-lg-end text-center">
+                    <section className="col-lg-6 col-sm-6 col-xs-12 order-sm-2  mt-3  mt-lg-0 mt-md-0 order-1  order-lg-2  col-12 text-lg-end text-center">
                         <button className="btn me-3 w-lg-25 btn-danger shadow">
                             Reporte &nbsp;
                             <FontAwesomeIcon icon={faFilePdf} />
@@ -113,15 +113,19 @@ const ListRegistros = () => {
                     />
                 </div>
             </div>
-            <div className="container p-0 m-0">
-                <div
-                    className="modal fade"
-                    id="exampleModal2"
-                    tabIndex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                >
-                    <ModalForm create={create} />
+            <div className="container-fluid p-0 m-0">
+                <div className="row">
+                    <div className="col">
+                        <div
+                            className="modal fade"
+                            id="exampleModal2"
+                            tabIndex="-1"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                        >
+                            <ModalForm create={create} />
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

@@ -152,7 +152,7 @@ const ModalForm = ({ create, personArray }) => {
     return (
         <>
             <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content ">
+                <div className="modal-content">
                     <div className="modal-header ">
                         <button
                             type="button"
@@ -161,7 +161,7 @@ const ModalForm = ({ create, personArray }) => {
                             aria-label="Close"
                         ></button>
                     </div>
-                    <div className="modal-body">
+                    <div className="modal-body  w-100">
                         <h3
                             className="text-center  "
                             id="exampleModalLabel"

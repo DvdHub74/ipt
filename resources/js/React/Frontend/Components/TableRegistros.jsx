@@ -88,7 +88,7 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
     };
     return (
         <>
-            <div className=" col-lg-9 col-12  mx-auto ">
+            <div className="col-lg-10 col-12  mx-auto ">
                 <div className="row">
                     <div className="col-md-1">
                         <select
