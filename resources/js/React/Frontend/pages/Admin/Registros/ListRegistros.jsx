@@ -30,9 +30,7 @@ const ListRegistros = () => {
                     },
                 };
                 let filters =
-                    "?per_page=" +
-                    5 +
-                    "&page=" +
+                    "?page=" +
                     page +
                     "&per_page=" +
                     perPage +

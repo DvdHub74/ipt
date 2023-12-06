@@ -31,7 +31,6 @@ const Reportes = () => {
                     config
                 );
                 const data = response.data.data;
-                console.log(data);
                 setLoaded(true);
                 setLog(data);
 
@@ -120,6 +119,12 @@ const Reportes = () => {
                                                         scope="col"
                                                         className="text-center"
                                                     >
+                                                        ID
+                                                    </th>
+                                                    <th
+                                                        scope="col"
+                                                        className="text-center"
+                                                    >
                                                         Usuario
                                                     </th>
                                                     <th
@@ -146,6 +151,11 @@ const Reportes = () => {
                                                 {loaded &&
                                                     log.map((log, index) => (
                                                         <tr key={index}>
+                                                            <td className="text-center">
+                                                                {
+                                                                    log.id
+                                                                }
+                                                            </td>
                                                             <td className="text-center">
                                                                 {
                                                                     log.data
