@@ -225,7 +225,7 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                                                     </div>
                                                     <div className="dropdown d-lg-none">
                                                         <button
-                                                            className="btn btn-secondary dropdown-toggle"
+                                                            className="btn btn-outline-secondary dropdown-toggle"
                                                             type="button"
                                                             id="dropdownMenuButton1"
                                                             data-bs-toggle="dropdown"
@@ -241,6 +241,11 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                                                                     data-bs-target="#exampleModal"
                                                                     type="button"
                                                                     className="btn  "
+                                                                    onClick={() =>
+                                                                        handleEdit(
+                                                                            person
+                                                                        )
+                                                                    }
                                                                     style={{
                                                                         borderRadius:
                                                                             "50px",
@@ -255,6 +260,11 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
 
                                                                 <button
                                                                     className="btn  "
+                                                                    onClick={() =>
+                                                                        handleDelete(
+                                                                            person.id
+                                                                        )
+                                                                    }
                                                                     style={{
                                                                         borderRadius:
                                                                             "50px",
