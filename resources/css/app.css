@@ -88,12 +88,26 @@ color: #463EB6 !important;
     }
 
   }
+.text-lila{
+    color: #463EB6 !important;
+}
+.b{
+    font-weight: bold !important;
+}
 .btnLogin:hover{
     background: #463EB6 !important;
+    color: white;
+}
+.btnLogin{
+    background: #6157f1 !important;
+    color: white;
 }
 *{
     font-family: 'Montserrat', sans-serif;
 }
 
 
+.modal {
+    --bs-modal-width:575px;
+}
 

@@ -140,13 +140,10 @@ const ModalForm = ({ create, personArray }) => {
     };
     const inputStyle = {
         background: "none",
-        borderBottom: "2px solid #ccc",
+        border: "2px solid #ccc",
         transition: "border-color 0.2s",
-        borderTop: "0px",
-        borderLeft: "0px",
-        borderRight: "0px",
         boxShadow: "none",
-        borderRadius: "0px",
+        borderRadius: "10px",
     };
 
     return (
@@ -172,8 +169,8 @@ const ModalForm = ({ create, personArray }) => {
                                 : "Editar Registro"}
                         </h3>
                         <form onSubmit={handleSubmit}>
-                            <div className="row mb-5 mt-3">
-                                <div className="col-10  my-3 mx-auto">
+                            <div className="row mb-5 mt-3 p-3">
+                                <div className="col-12 col-md-6  my-4 mx-auto">
                                     <input
                                         type="text"
                                         className="form-control ps-3 customControl"
@@ -184,18 +181,18 @@ const ModalForm = ({ create, personArray }) => {
                                         }
                                         style={inputStyle}
                                         onFocus={(e) => {
-                                            e.target.style.borderBottom =
-                                                "5px solid #463EB6";
+                                            e.target.style.border =
+                                                "1px solid #463EB6";
                                             e.target.placeholder = "";
                                         }}
                                         onBlur={(e) => {
-                                            e.target.style.borderBottom =
+                                            e.target.style.border =
                                                 "2px solid #ccc";
                                             e.target.placeholder = "Nombre...";
                                         }}
                                     />
                                 </div>
-                                <div className="col-10  my-3 mx-auto">
+                                <div className="col-12 col-md-6  my-4 mx-auto">
                                     <input
                                         type="text"
                                         className="form-control ps-3 customControl"
@@ -206,19 +203,19 @@ const ModalForm = ({ create, personArray }) => {
                                         }
                                         style={inputStyle}
                                         onFocus={(e) => {
-                                            e.target.style.borderBottom =
-                                                "5px solid #463EB6";
+                                            e.target.style.border =
+                                                "1px solid #463EB6";
                                             e.target.placeholder = "";
                                         }}
                                         onBlur={(e) => {
-                                            e.target.style.borderBottom =
+                                            e.target.style.border =
                                                 "2px solid #ccc";
                                             e.target.placeholder =
                                                 "Apellido...";
                                         }}
                                     />
                                 </div>
-                                <div className="col-10  my-3 mx-auto">
+                                <div className="col-12 col-md-6  my-4 mx-auto">
                                     <input
                                         type="number"
                                         className="form-control ps-3 customControl"
@@ -227,18 +224,18 @@ const ModalForm = ({ create, personArray }) => {
                                         onChange={(e) => setAge(e.target.value)}
                                         style={inputStyle}
                                         onFocus={(e) => {
-                                            e.target.style.borderBottom =
-                                                "5px solid #463EB6";
+                                            e.target.style.border =
+                                                "1px solid #463EB6";
                                             e.target.placeholder = "";
                                         }}
                                         onBlur={(e) => {
-                                            e.target.style.borderBottom =
+                                            e.target.style.border =
                                                 "2px solid #ccc";
                                             e.target.placeholder = "Edad...";
                                         }}
                                     />
                                 </div>
-                                <div className="col-10  my-3 mx-auto">
+                                <div className="col-12 col-md-6  my-4 mx-auto">
                                     <select
                                         className="form-control ps-3 customControl"
                                         placeholder="Ministerio..."
@@ -246,20 +243,22 @@ const ModalForm = ({ create, personArray }) => {
                                         onChange={(e) =>
                                             setMinistrieOne(e.target.value)
                                         }
-                                        style={inputStyle}
+                                        style={{...inputStyle}}
                                         onFocus={(e) => {
-                                            e.target.style.borderBottom =
-                                                "5px solid #463EB6";
+                                            e.target.style.border =
+                                                "1px solid #463EB6";
                                             e.target.placeholder = "";
                                         }}
                                         onBlur={(e) => {
-                                            e.target.style.borderBottom =
+                                            e.target.style.border =
                                                 "2px solid #ccc";
                                             e.target.placeholder = "Edad...";
                                         }}
                                     >
                                         <option hidden>
-                                            Seleccione
+                                            <span>
+                                                Ministerio
+                                            </span>
                                         </option>
                                         {ministries &&
                                             ministries.map((option) => (
@@ -276,7 +275,7 @@ const ModalForm = ({ create, personArray }) => {
                                             ))}
                                     </select>
                                 </div>
-                                <div className="col-10  my-3 mx-auto d-flex justify-content-between">
+                                <div className="col-12 col-md-6  my-4 mx-auto d-flex justify-content-between">
                                     <span>
                                         <input
                                             type="radio"
@@ -314,7 +313,7 @@ const ModalForm = ({ create, personArray }) => {
                                         Propiedad <br />
                                     </span>
                                 </div>
-                                <div className="col-10  my-3 mx-auto d-flex justify-content-between">
+                                <div className="col-12 col-md-6  my-4 mx-auto d-flex justify-content-between">
                                     <input
                                         type="date"
                                         name="date"
@@ -322,8 +321,8 @@ const ModalForm = ({ create, personArray }) => {
                                         style={{
                                             ...inputStyle,
                                             width: "100%",
-                                            Maxheight: "70px",
                                         }}
+                                        className="p-1"
                                         value={birth}
                                         onChange={(e) =>
                                             setBirth(e.target.value)
@@ -331,14 +330,16 @@ const ModalForm = ({ create, personArray }) => {
                                     />
                                 </div>
                             </div>
-                            <div className="modal-footer px-4">
+                            <div className="modal-footer px-5">
                                 <button
                                     type="submit"
-                                    className="btn btnMenu w-50 mx-auto"
+                                    className="btn btnMenu mx-auto"
                                     style={{
                                         background: "#2F288B",
                                         color: "white",
                                         textTransform: "uppercase",
+                                        maxWidth: '200px',
+                                        width: '150px'
                                     }}
                                 >
                                     <FontAwesomeIcon icon={faSave} />

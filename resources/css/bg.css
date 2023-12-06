@@ -3,10 +3,12 @@
     z-index: -10;
     /* background-image: url('https://img.freepik.com/free-vector/prickly-juniper-branch-beige-gray-minimal-background_53876-113047.jpg'); */
     background-image: url('https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTd8fHxlbnwwfHx8fHw%3D');
+    background-image: url('https://wallpaperaccess.com/full/2314983.jpg');
     background-size: cover;
     content: "";
     position: fixed;
     top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    filter: blur(5px);
+    width: 100vw;
+    height: 100vh;
+    filter: saturate(1.7)  blur(2px);
 }

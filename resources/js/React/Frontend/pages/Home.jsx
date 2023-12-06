@@ -33,16 +33,14 @@ const Home = () => {
         getMinistries();
     }, []);
 
-
     const inputStyle = {
         background: "none",
-        borderBottom: "2px solid #ccc",
+        border: "2px solid #ccc",
         transition: "border-color 0.2s",
-        borderTop: "0px",
-        borderLeft: "0px",
-        borderRight: "0px",
-        boxShadow: "none",
-        borderRadius: "0px",
+        borderRadius: "10px",
+        height: "35px",
+        textAlign: "center",
+        fontSize: "18px",
     };
 
     const handleChangeForm = () => {
@@ -156,302 +154,303 @@ const Home = () => {
     };
     return (
         <>
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col"></div>
-
-                    <div className="col-lg-6 col-xl-5 col-md-7 col-12 containerLogin bg-light vh-100  relative shadow">
-                        <main
-                            className="card cardLogin  mx-auto w-75 border-0 h-50 absolute"
-                            style={{
-                                top: "25%",
-                                background: "none",
-                            }}
+            <main className="container-fluid">
+                <div className="row d-flex justify-content-center align-items-center vh-100 p-4 p-md-5">
+                    {!form && (
+                        <div
+                            className="col-12 col-xl-3 col-lg-5 col-md-6 col-sm-8 card p-0"
+                            style={{ minHeight: "500px" }}
                         >
-                            {!form && (
-                                <div className="containLogin">
-                                    <div className="card-title text-center mt-3">
-                                        <h3
-                                            style={{
-                                                textTransform: "uppercase",
-                                            }}
-                                            className="titlePage fs-1"
-                                        >
-                                            Iniciar Sesion
-                                        </h3>
-                                    </div>
-
-                                    <section className="card-body">
-                                        <form onSubmit={handleLogin}>
-                                            <div className="row mb-4 mt-3">
-                                                <div className="col-10 my-3 mx-auto">
-                                                    <input
-                                                        type="Email"
-                                                        className="form-control ps-3 customControl text-center"
-                                                        placeholder="Correo"
-                                                        style={inputStyle}
-                                                        onFocus={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "5px solid #463EB6";
-                                                            e.target.placeholder =
-                                                                "";
-                                                        }}
-                                                        onBlur={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "2px solid #ccc";
-                                                            e.target.placeholder =
-                                                                "Correo";
-                                                        }}
-                                                        value={emailLogin}
-                                                        onChange={(e) =>
-                                                            setEmailLogin(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                                <div className="col-10 my-3 mx-auto">
-                                                    <input
-                                                        type="password"
-                                                        className="form-control ps-3 customControl text-center"
-                                                        placeholder="Contraseña"
-                                                        style={inputStyle}
-                                                        onFocus={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "5px solid #463EB6";
-                                                            e.target.placeholder =
-                                                                "";
-                                                        }}
-                                                        onBlur={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "2px solid #ccc";
-                                                            e.target.placeholder =
-                                                                "Apellido";
-                                                        }}
-                                                        value={passwordLogin}
-                                                        onChange={(e) =>
-                                                            setPasswordLogin(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                                <div className="col-10 mt-5 mx-auto text-center ">
-                                                    <button
-                                                        type="submit"
-                                                        className="btn btnLogin w-100"
-                                                        style={{
-                                                            background:
-                                                                "#2F288B",
-                                                            color: "white",
-                                                        }}
-                                                    >
-                                                        ENTRAR
-                                                    </button>
-                                                </div>
+                            <div className="card-header bg-white text-center">
+                                <span className="display-6 text-lila b">
+                                    Login
+                                </span>
+                            </div>
+                            <div className="card-body">
+                                <div className="container-fluid">
+                                    <form onSubmit={handleLogin}>
+                                        <div className="row py-5">
+                                            <div className="col-12 col-md-9 mx-auto my-3">
+                                                <input
+                                                    type="email"
+                                                    placeholder="Correo"
+                                                    className="w-100 form-control"
+                                                    style={inputStyle}
+                                                    onFocus={(e) => {
+                                                        e.target.style.border =
+                                                            "1px solid #6157f1";
+                                                        e.target.placeholder =
+                                                            "";
+                                                    }}
+                                                    onBlur={(e) => {
+                                                        e.target.style.border =
+                                                            "2px solid #ccc";
+                                                        e.target.placeholder =
+                                                            "Apellido";
+                                                    }}
+                                                    value={emailLogin}
+                                                    onChange={(e) =>
+                                                        setEmailLogin(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                />
                                             </div>
-                                        </form>
-                                    </section>
-                                </div>
-                            )}
-                            {form && (
-                                <div className="containRegister">
-                                    <div className="card-title text-center mt-3">
-                                        <h3
-                                            style={{
-                                                textTransform: "uppercase",
-                                            }}
-                                            className="titlePage fs-1"
-                                        >
-                                            Registrarse
-                                        </h3>
-                                    </div>
-
-                                    <section className="card-body">
-                                        <div className="row mb-3 mt-3">
-                                            <form onSubmit={handleRegister}>
-                                                <div className="col-10 my-3 mx-auto">
-                                                    <input
-                                                        type="text"
-                                                        className="form-control ps-3 customControl text-center"
-                                                        placeholder="Nombre"
-                                                        style={inputStyle}
-                                                        onFocus={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "5px solid #463EB6";
-                                                            e.target.placeholder =
-                                                                "";
-                                                        }}
-                                                        onBlur={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "2px solid #ccc";
-                                                            e.target.placeholder =
-                                                                "Nombre";
-                                                        }}
-                                                        value={name}
-                                                        onChange={(e) =>
-                                                            setName(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                                <div className="col-10 my-3 mx-auto">
-                                                    <input
-                                                        type="Email"
-                                                        className="form-control ps-3 customControl text-center"
-                                                        placeholder="Correo"
-                                                        style={inputStyle}
-                                                        onFocus={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "5px solid #463EB6";
-                                                            e.target.placeholder =
-                                                                "";
-                                                        }}
-                                                        onBlur={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "2px solid #ccc";
-                                                            e.target.placeholder =
-                                                                "Correo";
-                                                        }}
-                                                        value={email}
-                                                        onChange={(e) =>
-                                                            setEmail(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                                <div className="col-10 my-3 mx-auto">
-                                                    <input
-                                                        type="password"
-                                                        className="form-control ps-3 customControl text-center"
-                                                        placeholder="Contraseña"
-                                                        style={inputStyle}
-                                                        onFocus={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "5px solid #463EB6";
-                                                            e.target.placeholder =
-                                                                "";
-                                                        }}
-                                                        onBlur={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "2px solid #ccc";
-                                                            e.target.placeholder =
-                                                                "Contraseña";
-                                                        }}
-                                                        value={password}
-                                                        onChange={(e) =>
-                                                            setPassword(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                                <div className="col-10 my-3 mx-auto">
-                                                    <input
-                                                        type="password"
-                                                        className="form-control ps-3 customControl text-center"
-                                                        placeholder="Repetir Contraseña"
-                                                        style={inputStyle}
-                                                        onFocus={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "5px solid #463EB6";
-                                                            e.target.placeholder =
-                                                                "";
-                                                        }}
-                                                        onBlur={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "2px solid #ccc";
-                                                            e.target.placeholder =
-                                                                "Repetir Contraseña";
-                                                        }}
-                                                        value={repeatPassword}
-                                                        onChange={(e) =>
-                                                            setRepeatPassword(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                                <div className="col-10 my-3 mx-auto">
-                                                    <select
-                                                        className="form-control ps-3 customControl text-center"
-                                                        placeholder="Ministerio..."
-                                                        value={ministrie}
-                                                        onChange={(e) =>
-                                                            setMinistrie(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                        style={inputStyle}
-                                                        onFocus={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "5px solid #463EB6";
-                                                            e.target.placeholder =
-                                                                "";
-                                                        }}
-                                                        onBlur={(e) => {
-                                                            e.target.style.borderBottom =
-                                                                "2px solid #ccc";
-                                                            e.target.placeholder =
-                                                                "Edad...";
-                                                        }}
-                                                    >
-                                                        <option disabled hidden value="">
-                                                            Seleccione
-                                                        </option>
-                                                        {ministries &&
-                                                            ministries.map(
-                                                                (option) => (
-                                                                    <option
-                                                                        key={
-                                                                            option.id
-                                                                        }
-                                                                        value={
-                                                                            option.id
-                                                                        }
-                                                                    >
-                                                                        {
-                                                                            option.name
-                                                                        }
-                                                                    </option>
-                                                                )
-                                                            )}
-                                                    </select>
-                                                </div>
-                                                <div className="col-10 my-3 mt-5 mx-auto text-center ">
-                                                    <button
-                                                        type="submit"
-                                                        className="btn btnLogin w-100"
-                                                        style={{
-                                                            background:
-                                                                "#2F288B",
-                                                            color: "white",
-                                                        }}
-                                                    >
-                                                        REGISTRARTE
-                                                    </button>
-                                                </div>
-                                            </form>
+                                            <div className="col-12 col-md-9 mx-auto my-3">
+                                                <input
+                                                    type="password"
+                                                    placeholder="Contraseña"
+                                                    className="w-100 form-control"
+                                                    style={inputStyle}
+                                                    onFocus={(e) => {
+                                                        e.target.style.border =
+                                                            "1px solid #6157f1";
+                                                        e.target.placeholder =
+                                                            "";
+                                                    }}
+                                                    onBlur={(e) => {
+                                                        e.target.style.border =
+                                                            "2px solid #ccc";
+                                                        e.target.placeholder =
+                                                            "Apellido";
+                                                    }}
+                                                    value={passwordLogin}
+                                                    onChange={(e) =>
+                                                        setPasswordLogin(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                />
+                                            </div>
+                                            <div className="col-10 mx-auto text-center mt-3">
+                                                <button
+                                                    type="submit"
+                                                    className="btn btnLogin rounded-pill px-4"
+                                                >
+                                                    Iniciar Sesión
+                                                </button>
+                                            </div>
                                         </div>
-                                    </section>
+                                    </form>
                                 </div>
-                            )}
-
-                            <section className="col-10  mx-auto text-center ">
-                                <button
-                                    to="/home"
-                                    onClick={handleChangeForm}
-                                    className="btn btn-link text-secondary"
-                                >
-                                    {!form ? "REGISTRARTE" : "INICIAR SESION"}
-                                </button>
-                            </section>
-                        </main>
-                    </div>
+                            </div>
+                            <div className="card-footer bg-white text-center">
+                                <section className="col-10  mx-auto text-center ">
+                                    <button
+                                        to="/home"
+                                        onClick={handleChangeForm}
+                                        className="btn text-lila b"
+                                    >
+                                        {!form
+                                            ? "REGISTRARTE"
+                                            : "INICIAR SESION"}
+                                    </button>
+                                </section>
+                            </div>
+                        </div>
+                    )}
+                    {form && (
+                        <div
+                            className="col-12 col-xl-3 col-lg-6 col-md-8 col-sm-8 card p-0"
+                            style={{ minHeight: "500px" }}
+                        >
+                            <div className="card-header bg-white text-center">
+                                <span className="display-6 text-lila b">
+                                    Registrarse
+                                </span>
+                            </div>
+                            <div className="card-body p-0">
+                                <div className="container-fluid">
+                                    <form onSubmit={handleRegister}>
+                                        <div className="row py-5">
+                                            <div className="col-12 col-md-6 mx-auto my-3">
+                                                <input
+                                                    type="text"
+                                                    placeholder="Nombre"
+                                                    className="w-100 form-control"
+                                                    style={inputStyle}
+                                                    onFocus={(e) => {
+                                                        e.target.style.border =
+                                                            "1px solid #6157f1";
+                                                        e.target.placeholder =
+                                                            "";
+                                                    }}
+                                                    onBlur={(e) => {
+                                                        e.target.style.border =
+                                                            "2px solid #ccc";
+                                                        e.target.placeholder =
+                                                            "Nombre";
+                                                    }}
+                                                    value={name}
+                                                    onChange={(e) =>
+                                                        setName(e.target.value)
+                                                    }
+                                                />
+                                            </div>
+                                            <div className="col-12 col-md-6 mx-auto my-3">
+                                                <input
+                                                    type="email"
+                                                    placeholder="Correo"
+                                                    className="w-100 form-control"
+                                                    style={inputStyle}
+                                                    onFocus={(e) => {
+                                                        e.target.style.border =
+                                                            "1px solid #6157f1";
+                                                        e.target.placeholder =
+                                                            "";
+                                                    }}
+                                                    onBlur={(e) => {
+                                                        e.target.style.border =
+                                                            "2px solid #ccc";
+                                                        e.target.placeholder =
+                                                            "Correo";
+                                                    }}
+                                                    value={email}
+                                                    onChange={(e) =>
+                                                        setEmail(e.target.value)
+                                                    }
+                                                />
+                                            </div>
+                                            <div className="col-12 col-md-6 mx-auto my-3">
+                                                <input
+                                                    type="password"
+                                                    placeholder="Contraseña"
+                                                    className="w-100 form-control"
+                                                    style={inputStyle}
+                                                    onFocus={(e) => {
+                                                        e.target.style.border =
+                                                            "1px solid #6157f1";
+                                                        e.target.placeholder =
+                                                            "";
+                                                    }}
+                                                    onBlur={(e) => {
+                                                        e.target.style.border =
+                                                            "2px solid #ccc";
+                                                        e.target.placeholder =
+                                                            "Contraseña";
+                                                    }}
+                                                    value={password}
+                                                    onChange={(e) =>
+                                                        setPassword(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                />
+                                            </div>
+                                            <div className="col-12 col-md-6 mx-auto my-3">
+                                                <input
+                                                    type="password"
+                                                    placeholder="Repetir contraseña"
+                                                    className="w-100 form-control"
+                                                    style={inputStyle}
+                                                    onFocus={(e) => {
+                                                        e.target.style.border =
+                                                            "1px solid #6157f1";
+                                                        e.target.placeholder =
+                                                            "";
+                                                    }}
+                                                    onBlur={(e) => {
+                                                        e.target.style.border =
+                                                            "2px solid #ccc";
+                                                        e.target.placeholder =
+                                                            "Repetir contraseña";
+                                                    }}
+                                                    value={repeatPassword}
+                                                    onChange={(e) =>
+                                                        setRepeatPassword(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                />
+                                            </div>
+                                            <div className="col-12 col-md-6 mx-auto my-3">
+                                                <select
+                                                    className="mx-auto form-control"
+                                                    placeholder="Ministerio..."
+                                                    value={ministrie}
+                                                    onChange={(e) =>
+                                                        setMinistrie(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    style={inputStyle}
+                                                    onFocus={(e) => {
+                                                        e.target.style.border =
+                                                            "1px solid #463EB6";
+                                                        e.target.placeholder =
+                                                            "";
+                                                    }}
+                                                    onBlur={(e) => {
+                                                        e.target.style.border =
+                                                            "2px solid #ccc";
+                                                        e.target.placeholder =
+                                                            "Edad...";
+                                                    }}
+                                                >
+                                                    <option
+                                                        disabled
+                                                        hidden
+                                                        value=""
+                                                    >
+                                                        Ministerio
+                                                    </option>
+                                                    {ministries &&
+                                                        ministries.map(
+                                                            (option) => (
+                                                                <option
+                                                                    key={
+                                                                        option.id
+                                                                    }
+                                                                    value={
+                                                                        option.id
+                                                                    }
+                                                                >
+                                                                    {
+                                                                        option.name
+                                                                    }
+                                                                </option>
+                                                            )
+                                                        )}
+                                                </select>
+                                            </div>
+                                            <div className="col-10 mx-auto text-center mt-3">
+                                                <button
+                                                    type="submit"
+                                                    className="btn btnLogin rounded-pill px-4"
+                                                >
+                                                    Registrarse
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div className="card-footer bg-white text-center">
+                                <section className="col-10  mx-auto text-center ">
+                                    <button
+                                        to="/home"
+                                        onClick={handleChangeForm}
+                                        className="btn text-lila b"
+                                    >
+                                        {!form
+                                            ? "REGISTRARTE"
+                                            : "INICIAR SESION"}
+                                    </button>
+                                </section>
+                            </div>
+                        </div>
+                    )}
                 </div>
-            </div>
+                {/* <section className="col-10  mx-auto text-center ">
+                    <button
+                        to="/home"
+                        onClick={handleChangeForm}
+                        className="btn btn-link text-secondary"
+                    >
+                        {!form ? "REGISTRARTE" : "INICIAR SESION"}
+                    </button>
+                </section> */}
+            </main>
         </>
     );
 };
