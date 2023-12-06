@@ -167,7 +167,7 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                                                         : "Propiedad"}
                                                 </td>
                                                 <td className="text-center">
-                                                    {person.ministrie[0].name}
+                                                    {person.ministrie[0] != null ? person.ministrie[0].name : ''}
                                                 </td>
                                                 <td className="text-center">
                                                     {person.birthday}

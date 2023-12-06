@@ -103,7 +103,7 @@ const AdminLayout = () => {
         <>
             {!cargando && (
                 <div className="container-fluid p-0 m-0">
-                    <div className="shadow-sm headerMain pt-3  pb-3 vw-100 d-flex justify-content-between align-items-center px-3">
+                    <div className="headerMain pt-3  pb-3 vw-100 d-flex justify-content-between align-items-center px-3">
                         <button
                             className="btn btnMenu"
                             style={{ background: "#2F288B", color: "white" }}
@@ -113,7 +113,7 @@ const AdminLayout = () => {
                             aria-controls="staticBackdrop"
                         >
                             <FontAwesomeIcon icon={faBarsStaggered} />
-                            {""} Menu
+                            {/* {""} Menu */}
                         </button>
                         <div className="me-2">
                             <button
@@ -122,7 +122,7 @@ const AdminLayout = () => {
                                 style={{ borderRadius: "50px" }}
                             >
                                 <FontAwesomeIcon icon={faArrowAltCircleLeft} />
-                                {""} Salir
+                                {/* {""} Salir */}
                             </button>
                         </div>
                     </div>

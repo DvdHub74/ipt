@@ -36,7 +36,7 @@ class PeopleController extends Controller
 
 
             $res->transform(function ($res) {
-                $res->ministrie_id = $res->ministrie[0]['id'];
+                if(isset($res->ministrie[0])) $res->ministrie_id = $res->ministrie[0]['id'];
                 return $res;
             });
 
