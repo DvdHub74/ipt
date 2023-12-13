@@ -203,8 +203,8 @@ const Reportes = () => {
                                         </tbody>
                                     </table>
                                 </div>
-                                <section className="d-flex mt-3 justify-content-center">
-                                    <nav aria-label="Page navigation example">
+                                <section className="mt-3 d-flex px-3 px-md-0  justify-content-md-center my-auto" style={{overflow:'auto'}}>
+                                    <nav aria-label="Page navigation example mx-auto">
                                         <ul className="pagination">
                                             <li
                                                 className={`page-item ${
