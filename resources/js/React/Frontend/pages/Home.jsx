@@ -158,7 +158,7 @@ const Home = () => {
                 <div className="row d-flex justify-content-center align-items-center vh-100 p-4 p-md-5">
                     {!form && (
                         <div
-                            className="col-12 col-xl-3 col-lg-5 col-md-6 col-sm-8 card p-0"
+                            className="col-12 col-xl-3 col-lg-5 col-md-6 col-sm-8 shadow-lg card p-0"
                             style={{ minHeight: "500px" }}
                         >
                             <div className="card-header bg-white text-center">
@@ -176,18 +176,6 @@ const Home = () => {
                                                     placeholder="Correo"
                                                     className="w-100 form-control"
                                                     style={inputStyle}
-                                                    onFocus={(e) => {
-                                                        e.target.style.border =
-                                                            "1px solid #6157f1";
-                                                        e.target.placeholder =
-                                                            "";
-                                                    }}
-                                                    onBlur={(e) => {
-                                                        e.target.style.border =
-                                                            "2px solid #ccc";
-                                                        e.target.placeholder =
-                                                            "Apellido";
-                                                    }}
                                                     value={emailLogin}
                                                     onChange={(e) =>
                                                         setEmailLogin(
@@ -202,18 +190,6 @@ const Home = () => {
                                                     placeholder="Contraseña"
                                                     className="w-100 form-control"
                                                     style={inputStyle}
-                                                    onFocus={(e) => {
-                                                        e.target.style.border =
-                                                            "1px solid #6157f1";
-                                                        e.target.placeholder =
-                                                            "";
-                                                    }}
-                                                    onBlur={(e) => {
-                                                        e.target.style.border =
-                                                            "2px solid #ccc";
-                                                        e.target.placeholder =
-                                                            "Apellido";
-                                                    }}
                                                     value={passwordLogin}
                                                     onChange={(e) =>
                                                         setPasswordLogin(
@@ -251,7 +227,7 @@ const Home = () => {
                     )}
                     {form && (
                         <div
-                            className="col-12 col-xl-3 col-lg-6 col-md-8 col-sm-8 card p-0"
+                            className="col-12 col-xl-3 col-lg-6 col-md-8 col-sm-8  shadow-lg card p-0"
                             style={{ minHeight: "500px" }}
                         >
                             <div className="card-header bg-white text-center">
@@ -269,18 +245,6 @@ const Home = () => {
                                                     placeholder="Nombre"
                                                     className="w-100 form-control"
                                                     style={inputStyle}
-                                                    onFocus={(e) => {
-                                                        e.target.style.border =
-                                                            "1px solid #6157f1";
-                                                        e.target.placeholder =
-                                                            "";
-                                                    }}
-                                                    onBlur={(e) => {
-                                                        e.target.style.border =
-                                                            "2px solid #ccc";
-                                                        e.target.placeholder =
-                                                            "Nombre";
-                                                    }}
                                                     value={name}
                                                     onChange={(e) =>
                                                         setName(e.target.value)
@@ -293,18 +257,6 @@ const Home = () => {
                                                     placeholder="Correo"
                                                     className="w-100 form-control"
                                                     style={inputStyle}
-                                                    onFocus={(e) => {
-                                                        e.target.style.border =
-                                                            "1px solid #6157f1";
-                                                        e.target.placeholder =
-                                                            "";
-                                                    }}
-                                                    onBlur={(e) => {
-                                                        e.target.style.border =
-                                                            "2px solid #ccc";
-                                                        e.target.placeholder =
-                                                            "Correo";
-                                                    }}
                                                     value={email}
                                                     onChange={(e) =>
                                                         setEmail(e.target.value)
@@ -317,18 +269,6 @@ const Home = () => {
                                                     placeholder="Contraseña"
                                                     className="w-100 form-control"
                                                     style={inputStyle}
-                                                    onFocus={(e) => {
-                                                        e.target.style.border =
-                                                            "1px solid #6157f1";
-                                                        e.target.placeholder =
-                                                            "";
-                                                    }}
-                                                    onBlur={(e) => {
-                                                        e.target.style.border =
-                                                            "2px solid #ccc";
-                                                        e.target.placeholder =
-                                                            "Contraseña";
-                                                    }}
                                                     value={password}
                                                     onChange={(e) =>
                                                         setPassword(
@@ -343,18 +283,6 @@ const Home = () => {
                                                     placeholder="Repetir contraseña"
                                                     className="w-100 form-control"
                                                     style={inputStyle}
-                                                    onFocus={(e) => {
-                                                        e.target.style.border =
-                                                            "1px solid #6157f1";
-                                                        e.target.placeholder =
-                                                            "";
-                                                    }}
-                                                    onBlur={(e) => {
-                                                        e.target.style.border =
-                                                            "2px solid #ccc";
-                                                        e.target.placeholder =
-                                                            "Repetir contraseña";
-                                                    }}
                                                     value={repeatPassword}
                                                     onChange={(e) =>
                                                         setRepeatPassword(
@@ -374,18 +302,6 @@ const Home = () => {
                                                         )
                                                     }
                                                     style={inputStyle}
-                                                    onFocus={(e) => {
-                                                        e.target.style.border =
-                                                            "1px solid #463EB6";
-                                                        e.target.placeholder =
-                                                            "";
-                                                    }}
-                                                    onBlur={(e) => {
-                                                        e.target.style.border =
-                                                            "2px solid #ccc";
-                                                        e.target.placeholder =
-                                                            "Edad...";
-                                                    }}
                                                 >
                                                     <option
                                                         disabled

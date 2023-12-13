@@ -70,17 +70,17 @@ const ListRegistros = () => {
                         <span className="titlePage">Lista de Registros</span>
                     </div>
                 </div>
-                <div className="row p-0 m-0 mt-5 ">
-                    <section className="col-lg-5  col-sm-6 order-2 order-sm-1 order-lg-1 col-12  ms-lg-5">
+                <div className="row p-0 m-0 mt-5  d-flex justify-content-center">
+                    <section className="col-lg-5   col-sm-6 order-2 order-sm-1 order-lg-1 col-12">
                         <input
-                            className="form-control mx-auto w-lg-50 w-75 mt-3 mt-lg-0 mt-md-0 shadow-sm ps-4  rounded"
+                            className="form-control  w-lg-50 w-75 mt-3 mt-lg-0 mt-md-0 shadow-sm ps-4  rounded"
                             onChange={handleSearchChange}
                             type="search"
                             placeholder="Buscar..."
                             id="example-search-input"
                         />
                     </section>
-                    <section className="col-lg-6 col-sm-6 col-xs-12 order-sm-2  mt-3  mt-lg-0 mt-md-0 order-1  order-lg-2  col-12 text-lg-end text-center">
+                    <section className=" col-lg-5 col-sm-6 col-xs-12 order-sm-2  mt-3  mt-lg-0 mt-md-0 order-1  order-lg-2  col-12 text-lg-end text-center">
                         <button className="btn me-3 w-lg-25 btn-danger shadow">
                             Reporte &nbsp;
                             <FontAwesomeIcon icon={faFilePdf} />
@@ -99,7 +99,7 @@ const ListRegistros = () => {
                     </section>
                 </div>
 
-                <div className="row mt-5">
+                <div className="row mt-5 p-2">
                     <TableRegistros
                         data={dataJson}
                         page={page}

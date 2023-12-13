@@ -24,9 +24,24 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
         onSelect(selectedOption);
     };
 
+    const MAX_PAGES_DISPLAYED = 5;
     const pageItems = [];
 
-    for (let pageItem = 1; pageItem <= last; pageItem++) {
+    let startPage = Math.max(1, page - Math.floor(MAX_PAGES_DISPLAYED / 2));
+    let endPage = Math.min(last, startPage + MAX_PAGES_DISPLAYED - 1);
+
+    if (last <= MAX_PAGES_DISPLAYED) {
+        startPage = 1;
+        endPage = last;
+    } else {
+        if (page <= Math.floor(MAX_PAGES_DISPLAYED / 2) + 1) {
+            endPage = MAX_PAGES_DISPLAYED;
+        } else if (page >= last - Math.floor(MAX_PAGES_DISPLAYED / 2)) {
+            startPage = last - MAX_PAGES_DISPLAYED + 1;
+        }
+    }
+
+    for (let pageItem = startPage; pageItem <= endPage; pageItem++) {
         pageItems.push(
             <li
                 key={pageItem}
@@ -41,7 +56,6 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
             </li>
         );
     }
-
     const handleButtonClick = (page) => {
         onChange(page);
     };
@@ -167,7 +181,10 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                                                         : "Propiedad"}
                                                 </td>
                                                 <td className="text-center">
-                                                    {person.ministrie[0] != null ? person.ministrie[0].name : ''}
+                                                    {person.ministrie[0] != null
+                                                        ? person.ministrie[0]
+                                                              .name
+                                                        : ""}
                                                 </td>
                                                 <td className="text-center">
                                                     {person.birthday}
@@ -303,7 +320,7 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                             </table>
                         </div>
                         <section className="d-flex  mt-3 justify-content-center">
-                            <nav aria-label="Page navigation example ">
+                            <nav aria-label="Page navigation example">
                                 <ul className="pagination">
                                     <li
                                         className={`page-item ${
@@ -325,7 +342,25 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                                             </span>
                                         </button>
                                     </li>
+
+                                    {startPage > 1 && (
+                                        <li className="page-item disabled">
+                                            <span className="page-link">
+                                                &hellip;
+                                            </span>
+                                        </li>
+                                    )}
+
                                     {pageItems}
+
+                                    {endPage < last && (
+                                        <li className="page-item disabled">
+                                            <span className="page-link">
+                                                &hellip;
+                                            </span>
+                                        </li>
+                                    )}
+
                                     <li
                                         className={`page-item ${
                                             page === last ? "disabled" : ""

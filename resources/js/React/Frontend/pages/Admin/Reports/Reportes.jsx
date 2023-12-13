@@ -16,7 +16,6 @@ const Reportes = () => {
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-
         const getData = async () => {
             setLoaded(false);
             const token = localStorage.getItem("token");
@@ -55,20 +54,37 @@ const Reportes = () => {
     const opciones = [5, 10, 20, 50];
 
     const totalPages = Math.ceil(total / perPage);
+    const MAX_PAGES_DISPLAYED = 5;
+    const pageItems = [];
 
-    let startPage = Math.max(1, page - Math.floor(perPage / 2));
-    let endPage = Math.min(startPage + 4, totalPages);
+    const currentPage = page;
+    let startPage = Math.max(
+        1,
+        currentPage - Math.floor(MAX_PAGES_DISPLAYED / 2)
+    );
+    let endPage = Math.min(totalPages, startPage + MAX_PAGES_DISPLAYED - 1);
 
-    if (endPage - startPage < 4) {
-        startPage = Math.max(1, endPage - 4);
+    if (totalPages <= MAX_PAGES_DISPLAYED) {
+        startPage = 1;
+        endPage = totalPages;
+    } else {
+        if (currentPage <= Math.floor(MAX_PAGES_DISPLAYED / 2) + 1) {
+            endPage = MAX_PAGES_DISPLAYED;
+        } else if (
+            currentPage >=
+            totalPages - Math.floor(MAX_PAGES_DISPLAYED / 2)
+        ) {
+            startPage = totalPages - MAX_PAGES_DISPLAYED + 1;
+        }
     }
 
-    const pageItems = [];
     for (let pageItem = startPage; pageItem <= endPage; pageItem++) {
         pageItems.push(
             <li
                 key={pageItem}
-                className={`page-item ${pageItem === page ? "active" : ""}`}
+                className={`page-item ${
+                    pageItem === currentPage ? "active" : ""
+                }`}
             >
                 <button
                     className="page-link"
@@ -152,9 +168,7 @@ const Reportes = () => {
                                                     log.map((log, index) => (
                                                         <tr key={index}>
                                                             <td className="text-center">
-                                                                {
-                                                                    log.id
-                                                                }
+                                                                {log.id}
                                                             </td>
                                                             <td className="text-center">
                                                                 {
@@ -200,7 +214,7 @@ const Reportes = () => {
                                             </tbody>
                                         </table>
                                         <section className="d-flex  mt-3 justify-content-center">
-                                            <nav aria-label="Page navigation example ">
+                                            <nav aria-label="Page navigation example">
                                                 <ul className="pagination">
                                                     <li
                                                         className={`page-item ${
@@ -226,10 +240,28 @@ const Reportes = () => {
                                                             </span>
                                                         </button>
                                                     </li>
+
+                                                    {startPage > 1 && (
+                                                        <li className="page-item disabled">
+                                                            <span className="page-link">
+                                                                &hellip;
+                                                            </span>
+                                                        </li>
+                                                    )}
+
                                                     {pageItems}
+
+                                                    {endPage < totalPages && (
+                                                        <li className="page-item disabled">
+                                                            <span className="page-link">
+                                                                &hellip;
+                                                            </span>
+                                                        </li>
+                                                    )}
+
                                                     <li
                                                         className={`page-item ${
-                                                            page === lastPage
+                                                            page === totalPages
                                                                 ? "disabled"
                                                                 : ""
                                                         }`}
