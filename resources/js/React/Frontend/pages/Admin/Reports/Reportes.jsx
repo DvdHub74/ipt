@@ -98,12 +98,12 @@ const Reportes = () => {
 
     return (
         <>
-            <div className="container-fluid p-5">
+            <div className="container-fluid p-2 p-md-0 m-0 mt-2">
                 <div className="row d-flex justify-content-center">
                     <h1 className="text-center">Logs</h1>
                 </div>
-                <div className="row mt-2 d-flex justify-content-center">
-                    <div className="col-md-8">
+                <div className="row mt-5 p-2">
+                    <div className="col-lg-10 col-12 mx-auto">
                         <div className="row">
                             <div className="col-md-1">
                                 <select
@@ -121,202 +121,182 @@ const Reportes = () => {
                                 Registros por pagina
                             </p>
                         </div>
-                        <div class="table-responsive">
-                            <section className="card">
-                                <div className="table-responsive w-100  mx-auto ">
-                                    <div className="card shadow py-4 ">
-                                        <table
-                                            className="table table-light table-hover"
-                                            style={{ borderRadius: "10px" }}
-                                        >
-                                            <thead className="table-secondary">
-                                                <tr>
-                                                    <th
-                                                        scope="col"
-                                                        className="text-center"
-                                                    >
-                                                        ID
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        className="text-center"
-                                                    >
-                                                        Usuario
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        className="text-center"
-                                                    >
-                                                        IP
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        className="text-center"
-                                                    >
-                                                        Fecha
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        className="text-center"
-                                                    >
-                                                        Acción
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {loaded &&
-                                                    log.map((log, index) => (
-                                                        <tr key={index}>
-                                                            <td className="text-center">
-                                                                {log.id}
-                                                            </td>
-                                                            <td className="text-center">
-                                                                {
-                                                                    log.data
-                                                                        .user
-                                                                        .name
-                                                                }
-                                                            </td>
-                                                            <td className="text-center">
-                                                                {log.data.ip}
-                                                            </td>
-                                                            <td className="text-center">
-                                                                {
-                                                                    log.data
-                                                                        .timestamp
-                                                                }
-                                                            </td>
-                                                            <td className="text-center">
-                                                                {
-                                                                    log.data
-                                                                        .action
-                                                                }
-                                                            </td>
-                                                        </tr>
-                                                    ))}
-                                                {!loaded && (
-                                                    <tr>
-                                                        <td
-                                                            colSpan="5"
-                                                            className="text-center"
-                                                        >
-                                                            <div
-                                                                className="spinner-border text-primary"
-                                                                role="status"
-                                                            >
-                                                                <span className="visually-hidden">
-                                                                    Loading...
-                                                                </span>
-                                                            </div>
+                        <div class="card shadow">
+                            <div className="card-body">
+                                <div className="table-responsive">
+                                    <table
+                                        className="table table-hover table-striped mb-0"
+                                        style={{ borderRadius: "10px" }}
+                                    >
+                                        <thead className="table-secondary">
+                                            <tr>
+                                                <th
+                                                    scope="col"
+                                                    className="text-center"
+                                                >
+                                                    ID
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="text-center"
+                                                >
+                                                    Usuario
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="text-center"
+                                                >
+                                                    IP
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="text-center"
+                                                >
+                                                    Fecha
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="text-center"
+                                                >
+                                                    Acción
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {loaded &&
+                                                log.map((log, index) => (
+                                                    <tr key={index}>
+                                                        <td className="text-center">
+                                                            {log.id}
+                                                        </td>
+                                                        <td className="text-center">
+                                                            {log.data.user.name}
+                                                        </td>
+                                                        <td className="text-center">
+                                                            {log.data.ip}
+                                                        </td>
+                                                        <td className="text-center">
+                                                            {log.data.timestamp}
+                                                        </td>
+                                                        <td className="text-center">
+                                                            {log.data.action}
                                                         </td>
                                                     </tr>
-                                                )}
-                                            </tbody>
-                                        </table>
-                                        <section className="d-flex  mt-3 justify-content-center">
-                                            <nav aria-label="Page navigation example">
-                                                <ul className="pagination">
-                                                    <li
-                                                        className={`page-item ${
-                                                            page === 1
-                                                                ? "disabled"
-                                                                : ""
-                                                        }`}
+                                                ))}
+                                            {!loaded && (
+                                                <tr>
+                                                    <td
+                                                        colSpan="5"
+                                                        className="text-center"
                                                     >
-                                                        <button
-                                                            className="page-link"
-                                                            onClick={() =>
-                                                                handleClick(
-                                                                    page - 1
-                                                                )
-                                                            }
-                                                            aria-label="Previous"
+                                                        <div
+                                                            className="spinner-border text-primary"
+                                                            role="status"
                                                         >
-                                                            <span aria-hidden="true">
-                                                                &laquo;
+                                                            <span className="visually-hidden">
+                                                                Loading...
                                                             </span>
-                                                            <span className="sr-only">
-                                                                Previous
-                                                            </span>
-                                                        </button>
-                                                    </li>
-
-                                                    {page != 1 && (
-                                                        <li>
-                                                            <button
-                                                                className="page-link"
-                                                                style={{
-                                                                    backgroundColor:
-                                                                        "#f3f3f3",
-                                                                }}
-                                                                onClick={() =>
-                                                                    handleClick(
-                                                                        1
-                                                                    )
-                                                                }
-                                                                aria-label="Next"
-                                                            >
-                                                                <span aria-hidden="true">
-                                                                    1
-                                                                </span>
-                                                            </button>
-                                                        </li>
-                                                    )}
-
-                                                    {pageItems}
-
-                                                    {page != totalPages && (
-                                                        <li>
-                                                            <button
-                                                                className="page-link"
-                                                                style={{
-                                                                    backgroundColor:
-                                                                        "#f3f3f3",
-                                                                }}
-                                                                onClick={() =>
-                                                                    handleClick(
-                                                                        totalPages
-                                                                    )
-                                                                }
-                                                                aria-label="Next"
-                                                            >
-                                                                <span aria-hidden="true">
-                                                                    {totalPages}
-                                                                </span>
-                                                            </button>
-                                                        </li>
-                                                    )}
-
-                                                    <li
-                                                        className={`page-item ${
-                                                            page === totalPages
-                                                                ? "disabled"
-                                                                : ""
-                                                        }`}
-                                                    >
-                                                        <button
-                                                            className="page-link"
-                                                            onClick={() =>
-                                                                handleClick(
-                                                                    page + 1
-                                                                )
-                                                            }
-                                                            aria-label="Next"
-                                                        >
-                                                            <span aria-hidden="true">
-                                                                &raquo;
-                                                            </span>
-                                                            <span className="sr-only">
-                                                                Next
-                                                            </span>
-                                                        </button>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </section>
-                                    </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            )}
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </section>
+                                <section className="d-flex mt-3 justify-content-center">
+                                    <nav aria-label="Page navigation example">
+                                        <ul className="pagination">
+                                            <li
+                                                className={`page-item ${
+                                                    page === 1 ? "disabled" : ""
+                                                }`}
+                                            >
+                                                <button
+                                                    className="page-link"
+                                                    onClick={() =>
+                                                        handleClick(page - 1)
+                                                    }
+                                                    aria-label="Previous"
+                                                >
+                                                    <span aria-hidden="true">
+                                                        &laquo;
+                                                    </span>
+                                                    <span className="sr-only">
+                                                        Previous
+                                                    </span>
+                                                </button>
+                                            </li>
+
+                                            {page != 1 && (
+                                                <li>
+                                                    <button
+                                                        className="page-link"
+                                                        style={{
+                                                            backgroundColor:
+                                                                "#f3f3f3",
+                                                        }}
+                                                        onClick={() =>
+                                                            handleClick(1)
+                                                        }
+                                                        aria-label="Next"
+                                                    >
+                                                        <span aria-hidden="true">
+                                                            1
+                                                        </span>
+                                                    </button>
+                                                </li>
+                                            )}
+
+                                            {pageItems}
+
+                                            {page != totalPages && (
+                                                <li>
+                                                    <button
+                                                        className="page-link"
+                                                        style={{
+                                                            backgroundColor:
+                                                                "#f3f3f3",
+                                                        }}
+                                                        onClick={() =>
+                                                            handleClick(
+                                                                totalPages
+                                                            )
+                                                        }
+                                                        aria-label="Next"
+                                                    >
+                                                        <span aria-hidden="true">
+                                                            {totalPages}
+                                                        </span>
+                                                    </button>
+                                                </li>
+                                            )}
+
+                                            <li
+                                                className={`page-item ${
+                                                    page === totalPages
+                                                        ? "disabled"
+                                                        : ""
+                                                }`}
+                                            >
+                                                <button
+                                                    className="page-link"
+                                                    onClick={() =>
+                                                        handleClick(page + 1)
+                                                    }
+                                                    aria-label="Next"
+                                                >
+                                                    <span aria-hidden="true">
+                                                        &raquo;
+                                                    </span>
+                                                    <span className="sr-only">
+                                                        Next
+                                                    </span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </section>
+                            </div>
                         </div>
                     </div>
                 </div>
