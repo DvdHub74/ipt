@@ -13,7 +13,7 @@ import {
     faAnglesLeft,
     faArrowAltCircleLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import myImage from "../../../../../public/images/logo.png";
+import myImage from "../../../../../public/images/logo2.png";
 import "../../../../css/app.css";
 import useAuth from "../hooks/useAuth";
 

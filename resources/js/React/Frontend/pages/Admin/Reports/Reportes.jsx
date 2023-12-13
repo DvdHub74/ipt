@@ -241,21 +241,49 @@ const Reportes = () => {
                                                         </button>
                                                     </li>
 
-                                                    {startPage > 1 && (
-                                                        <li className="page-item disabled">
-                                                            <span className="page-link">
-                                                                &hellip;
-                                                            </span>
+                                                    {page != 1 && (
+                                                        <li>
+                                                            <button
+                                                                className="page-link"
+                                                                style={{
+                                                                    backgroundColor:
+                                                                        "#f3f3f3",
+                                                                }}
+                                                                onClick={() =>
+                                                                    handleClick(
+                                                                        1
+                                                                    )
+                                                                }
+                                                                aria-label="Next"
+                                                            >
+                                                                <span aria-hidden="true">
+                                                                    1
+                                                                </span>
+                                                            </button>
                                                         </li>
                                                     )}
 
                                                     {pageItems}
 
-                                                    {endPage < totalPages && (
-                                                        <li className="page-item disabled">
-                                                            <span className="page-link">
-                                                                &hellip;
-                                                            </span>
+                                                    {page != totalPages && (
+                                                        <li>
+                                                            <button
+                                                                className="page-link"
+                                                                style={{
+                                                                    backgroundColor:
+                                                                        "#f3f3f3",
+                                                                }}
+                                                                onClick={() =>
+                                                                    handleClick(
+                                                                        totalPages
+                                                                    )
+                                                                }
+                                                                aria-label="Next"
+                                                            >
+                                                                <span aria-hidden="true">
+                                                                    {totalPages}
+                                                                </span>
+                                                            </button>
                                                         </li>
                                                     )}
 

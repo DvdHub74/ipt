@@ -343,21 +343,43 @@ const TableRegistros = ({ data, page, last, onChange, onSelect, loaded }) => {
                                         </button>
                                     </li>
 
-                                    {startPage > 1 && (
-                                        <li className="page-item disabled">
-                                            <span className="page-link">
-                                                &hellip;
-                                            </span>
+                                    {page != 1 && (
+                                        <li>
+                                            <button
+                                                className="page-link"
+                                                style={{
+                                                    backgroundColor: "#f3f3f3",
+                                                }}
+                                                onClick={() =>
+                                                    handleButtonClick(1)
+                                                }
+                                                aria-label="Next"
+                                            >
+                                                <span aria-hidden="true">
+                                                    1
+                                                </span>
+                                            </button>
                                         </li>
                                     )}
 
                                     {pageItems}
 
-                                    {endPage < last && (
-                                        <li className="page-item disabled">
-                                            <span className="page-link">
-                                                &hellip;
-                                            </span>
+                                    {page != last && (
+                                        <li>
+                                            <button
+                                                className="page-link"
+                                                style={{
+                                                    backgroundColor: "#f3f3f3",
+                                                }}
+                                                onClick={() =>
+                                                    handleButtonClick(last)
+                                                }
+                                                aria-label="Next"
+                                            >
+                                                <span aria-hidden="true">
+                                                    {last}
+                                                </span>
+                                            </button>
                                         </li>
                                     )}
 
