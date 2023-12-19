@@ -44,4 +44,8 @@ class ResourceController extends Controller
         }
         return $ministrie;
     }
+
+    public function users(Request $request){
+        return User::orderBy('id', 'desc')->paginate($request->input('per_page', 5));
+    }
 }

@@ -40,7 +40,7 @@ class PeopleController extends Controller
                 return $res;
             });
 
-            return response()->json([$res], 200);
+            return response()->json($res);
         } catch (Exception $e) {
             return response()->json(["error" => $e->getMessage()], 400);
         }
