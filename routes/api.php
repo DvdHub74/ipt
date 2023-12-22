@@ -38,6 +38,7 @@ Route::middleware(['jwt.auth', 'custom-loger'])->group(   function(){
         Route::post('/people', [PeopleController::class, 'create']);
         Route::put('/people', [PeopleController::class, 'edit']);
         Route::delete('/people', [PeopleController::class, 'delete']);
+        Route::put('/people-change-state', [PeopleController::class, 'changeState']);
 
 
         Route::get('/users', [ResourceController::class, 'users']);
@@ -52,3 +53,5 @@ Route::middleware(['jwt.auth', 'custom-loger'])->group(   function(){
 Route::prefix('public')->group(function () {
     Route::get('/ministrie', [ResourceController::class, 'ministrie']);
 });
+
+Route::get('/report', [PeopleController::class, 'generateReport']);

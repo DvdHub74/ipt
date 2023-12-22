@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Exception;
 use LDAP\Result;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Models\People;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Validator;
 
 class PeopleController extends Controller
@@ -108,9 +111,53 @@ class PeopleController extends Controller
             $person->ministrie()->detach();
             $person->delete();
 
+
             return response()->json("success", 200);
         } catch (\Throwable $th) {
             return response()->json([$th->getMessage()], 500);
         }
     }
+
+    public function changeState(Request $request){
+        try {
+            $userId = $request->input('id');
+
+            $person = People::find($userId);
+
+            $person->active = !$person->active;
+
+            $person->save();
+            return response()->json(['msg'=> 'Se cambio el estado correctamente'], 200);
+
+        } catch (\Throwable $th) {
+            return  response()->json([$th->getMessage()],500);
+        }
+    }
+
+    public function generateReport(){
+        try {
+            $pdfOptions = new Options();
+            $pdfOptions->set('isHtml5ParserEnabled', true);
+
+            $data = People::with('ministrie')->get();
+            $view = View::make('report')->with('data', $data)->render();
+
+            $dompdf =new Dompdf($pdfOptions);
+
+            $dompdf->loadHtml($view);
+
+            $dompdf->render();
+
+            return response($dompdf->output(), 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="ejemplo.pdf"',
+            ]);
+
+        } catch (\Throwable $th) {
+            return response()->json(['msg'=> $th->getMessage()],500);
+        }
+    }
+
+
+
 }
