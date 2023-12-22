@@ -35,6 +35,7 @@ Route::middleware(['jwt.auth', 'custom-loger'])->group(   function(){
 
     Route::prefix('data')->group(function () {
         Route::get('/people', [PeopleController::class, 'index']);
+        Route::get('/people-detail', [PeopleController::class, 'viewPerson']);
         Route::post('/people', [PeopleController::class, 'create']);
         Route::put('/people', [PeopleController::class, 'edit']);
         Route::delete('/people', [PeopleController::class, 'delete']);

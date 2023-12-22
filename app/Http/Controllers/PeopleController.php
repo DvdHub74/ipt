@@ -94,10 +94,10 @@ class PeopleController extends Controller
             People::where('id', $request->id)->update($data);
 
 
-            DB::table('people_ministrie')->where('id_people', $request->id)->update([
-                'id_ministrie' => $request->ministrie,
-                'updated_at' => Carbon::now()
-            ]);
+            // DB::table('people_ministrie')->where('id_people', $request->id)->update([
+            //     'id_ministrie' => $request->ministrie,
+            //     'updated_at' => Carbon::now()
+            // ]);
 
             return response()->json("success", 200);
         } catch (\Throwable $th) {
@@ -128,6 +128,25 @@ class PeopleController extends Controller
 
             $person->save();
             return response()->json(['msg'=> 'Se cambio el estado correctamente'], 200);
+
+        } catch (\Throwable $th) {
+            return  response()->json([$th->getMessage()],500);
+        }
+    }
+    public function viewPerson(Request $request){
+        try {
+            $userId = $request->input('id');
+
+            $person = People::with('ministrie')->where('id',$userId)->first();
+
+            $person->ministerio = '';
+
+            if(isset($person->ministrie[0]['name'])){
+                $person->ministerio = $person->ministrie[0]['name'];
+                unset($person->ministrie);
+            }
+
+            return response()->json($person);
 
         } catch (\Throwable $th) {
             return  response()->json([$th->getMessage()],500);
