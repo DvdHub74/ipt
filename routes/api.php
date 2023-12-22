@@ -44,6 +44,7 @@ Route::middleware(['jwt.auth', 'custom-loger'])->group(   function(){
         Route::get('/users', [ResourceController::class, 'users']);
     });
     Route::prefix('resource')->group(function () {
+        Route::get('/report', [PeopleController::class, 'generateReport']);
         Route::get('/logs', [ResourceController::class, 'logs']);
         Route::get('/ministrie', [ResourceController::class, 'ministrie']);
     });
@@ -54,4 +55,3 @@ Route::prefix('public')->group(function () {
     Route::get('/ministrie', [ResourceController::class, 'ministrie']);
 });
 
-Route::get('/report', [PeopleController::class, 'generateReport']);
