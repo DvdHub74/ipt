@@ -17,8 +17,7 @@ class People extends Model
         'lastnames',
         'age',
         'birthday',
-        'type',
-        'state',
+        'is_baptized'
     ];
     protected $attributes = [
         'active' => 1,
@@ -27,4 +26,10 @@ class People extends Model
     public function ministrie(){
         return  $this->belongsToMany(Ministrie::class, 'people_ministrie', 'id_people','id_ministrie');
     }
+
+    public function getBirthdayAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
+    }
+
 }

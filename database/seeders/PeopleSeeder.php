@@ -25,14 +25,19 @@ class PeopleSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123123123'),
             'global' => 1,
-            'active' => 1
+            'active' => 1,
         ]);
 
 
 
         Ministrie::create(['name' => 'EDC']);
         Ministrie::create(['name' => 'CMF']);
-        Ministrie::create(['name' => 'FDB']);
+        Ministrie::create(['name' => 'FDV']);
+        Ministrie::create(['name' => 'M']);
+        Ministrie::create(['name' => 'EBD']);
+        Ministrie::create(['name' => 'DMFADES']);
+        Ministrie::create(['name' => 'CDR']);
+        Ministrie::create(['name' => 'PG']);
 
     }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('lastnames');
             $table->string('age');
             $table->string('birthday');
-            $table->string('state');
+            $table->boolean('is_baptized')->default(false);
             $table->boolean('active')->default(false);
             $table->timestamps();
         });

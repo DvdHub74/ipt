@@ -24,6 +24,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'created_by'
     ];
 
     protected $attributes = [
@@ -66,4 +67,9 @@ class User extends Authenticatable implements JWTSubject
     public function ministrie(){
         return  $this->belongsToMany(Ministrie::class, 'user_ministrie', 'id_user','id_ministrie');
     }
+
+    public function createdBy() {
+        return $this->belongsTo(User::class, 'created_by')->select('id','name');
+    }
+    
 }

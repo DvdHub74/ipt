@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::post('/register',[AuthController::class, 'register']);
+// Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
 
 Route::middleware(['jwt.auth', 'custom-loger'])->group(   function(){
@@ -32,6 +32,7 @@ Route::middleware(['jwt.auth', 'custom-loger'])->group(   function(){
     Route::get('/profile', [AuthController::class , 'profile']);
     Route::get('/logout', [AuthController::class , 'logout']);
     Route::post('/autenticar', [AuthController::class , 'autenticar']);
+    Route::post('/register',[AuthController::class, 'register']);
 
     Route::prefix('data')->group(function () {
         Route::get('/people', [PeopleController::class, 'index']);

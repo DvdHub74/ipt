@@ -53,13 +53,19 @@ class PeopleController extends Controller
     public function create(Request $request)
     {
         try {
+
+
+            $born = Carbon::parse($request->birthday);
+            $actualYear = Carbon::now();
+            
+            $age = $born->diffInYears($actualYear);
+            
             $validator = Validator::make($request->all(), [
                 'names' => 'required',
                 'lastnames' => 'required',
-                'age' => 'required',
                 'ministrie' => 'required',
                 'birthday' => 'required',
-                'state' => 'required',
+                'is_baptized' => 'required',
             ]);
             if ($validator->fails()) {
                 $errors = $validator->errors()->all();
@@ -69,9 +75,9 @@ class PeopleController extends Controller
             $person = People::create([
                 "names" => $request->names,
                 "lastnames" => $request->lastnames,
-                "birthday" => Carbon::parse($request->birthday)->format('d-m-Y'),
-                "age" => $request->age,
-                "state" => $request->state,
+                "birthday" => $born,
+                "age" => $age,
+                "is_baptized" => $request->is_baptized,
                 "active" => 1,
             ]);
 

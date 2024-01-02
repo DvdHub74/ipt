@@ -14,18 +14,27 @@ class AuthController extends Controller
 
 
     public function register(Request $req){
+        
+        $userAuth = auth()->guard('api')->user();
+        $userIsGlobal = $userAuth->global;
+        if(!$userIsGlobal){
+            return response()->json(['msg'=> 'No tiene acceso para ejecutar la acción'], 403);
+        }
 
         try {
             $req->validate([
                 'name' => 'required|string',
                 'email' => 'required|unique:users|email',
+                'global' => 'required',
                 'password' => 'required|min:8'
             ]);
 
             $user = User::create([
                 'name' => $req->name,
                 'email' => $req->email,
+                'global' => $req->global,
                 'password' => bcrypt($req->password),
+                'created_by' => $userAuth->id
             ]);
 
             $user->ministrie()->sync($req->ministrie);
